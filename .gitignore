@@ -39,3 +39,4 @@ rsconnect
 # R profile files
 *.Rhistory
 .Rproj.user/
+/.idea/*
