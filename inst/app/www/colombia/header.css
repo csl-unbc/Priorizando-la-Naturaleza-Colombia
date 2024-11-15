@@ -1,0 +1,73 @@
+
+.header-section {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+  background-color: #3366CC;
+  border-bottom: 2px solid #E6EFFD;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  line-height: 1;
+}
+.header {
+  height: 40px;
+  background-color: transparent;
+  border-radius: 0 0 12px 12px;
+  margin: 0 auto;
+  text-align: center;
+}
+.partners {
+  float: left;
+  margin: 0 0 0 5px;
+}
+.partners img {
+  height: 36px;
+  margin-top: 2px;
+}
+.uni-logos {
+  float: right;
+}
+.uni-logos img {
+  height: 20px;
+  margin-top: 10px;
+  margin-right: 5px;
+}
+.header .wrap {
+  display: inline-block;
+  margin-right: 110px;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.header .title {
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+  padding: 0 12px 0 12px;
+  vertical-align: middle;
+  display: inline;
+}
+.header .main-menu {
+  text-align: left;
+  font-size: 13px;
+  vertical-align: middle;
+  display: inline;
+}
+.header .main-menu a {
+  text-decoration: none;
+  /*background-color: #dae2d7;*/
+  color: #fff;
+  margin-right: 4px;
+  padding: 2px 4px;
+}
+.header .main-menu a:hover {
+  border-bottom: 2px solid #F42F63;
+}
+
+.header .main-menu a.active {
+  text-decoration: none;
+  border-bottom: 2px solid #F42F63;
+}

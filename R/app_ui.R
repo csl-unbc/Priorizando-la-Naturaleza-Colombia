@@ -28,7 +28,13 @@ app_ui <- function(request) {
           rel = "stylesheet",
           type = "text/css",
           href = "www/bootstrap-select-copy.min.css"
-        )
+        ),
+        # Colombia header
+        htmltools::tags$link(
+          rel = "stylesheet",
+          type = "text/css",
+          href = "www/colombia/header.css"
+        ),
       ),
 
       ## start up screen
@@ -40,12 +46,8 @@ app_ui <- function(request) {
         background = "#001329"
       ),
 
-      ## title
-      shiny::h3(
-        "Where To Work",
-        id = "app_title",
-        class = "leaflet-title"
-      ),
+      # Colombia header
+      includeHTML(app_sys("app/www/colombia/header.html")),
 
       ## leaflet map
       leaflet::leafletOutput("map", width = "100%", height = "100%"),
@@ -105,7 +107,7 @@ golem_add_external_resources <- function() {
     ## bundle CSS and JS files
     golem::bundle_resources(
       path = app_sys("app/www"),
-      app_title = "Where To Work"
+      app_title = "Priorizando la Naturaleza - Colombia"
     ),
 
     ## dependencies
