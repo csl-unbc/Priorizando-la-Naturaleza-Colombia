@@ -1,5 +1,5 @@
 .sidebar {
-  margin-top: 40px;
+  margin-top: 42px;
 }
 
 .sidebar-pane-inner  {
@@ -21,6 +21,26 @@
 
 .sidebar-right .sidebar-header {
   padding-left: 30px !important;
+}
+
+.map-manager-layer .header {
+  font-size: 13px !important;
+}
+.solution-setting .header .name-label {
+  font-size: 13px !important;
+}
+.sub-header .name-label {
+  font-size: 13px !important;
+}
+.panel-title {
+  font-size: 14px !important;
+}
+.nav-tabs {
+  font-size: 13px !important;
+}
+
+.sidebar-tabs > ul > li.active {
+  background-color: #3366CC !important;
 }
 
 .sidebar-pane {
