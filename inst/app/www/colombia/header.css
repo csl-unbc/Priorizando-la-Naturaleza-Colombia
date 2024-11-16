@@ -25,6 +25,7 @@
 .partners img {
   height: 36px;
   margin-top: 2px;
+  margin-left: 4px;
 }
 .uni-logos {
   float: right;
@@ -36,7 +37,7 @@
 }
 .header .wrap {
   display: inline-block;
-  margin-right: 110px;
+  margin-right: 135px;
   position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
