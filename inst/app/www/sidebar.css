@@ -14,6 +14,38 @@
   margin-left: 5px;
 }
 
+.sidebar-header {
+  background-color: #3366CC !important;
+  font-size: 11pt !important;
+  height: 30px !important;
+  line-height: 30px !important;
+}
+/* icons size sidebars to 30px */
+.sidebar-tabs, .sidebar-tabs > ul {
+  width: 30px !important;
+}
+.sidebar-tabs > li > a, .sidebar-tabs > ul > li > a {
+  line-height: 30px !important;
+}
+.sidebar-tabs > li, .sidebar-tabs > ul > li {
+  height: 30px !important;
+}
+.sidebar-tabs, .sidebar-tabs > ul {
+  width: 30px !important;
+}
+.sidebar-tabs, .sidebar-tabs > ul {
+  width: 30px !important;
+}
+.sidebar-left .sidebar-content {
+  left: 30px !important;
+}
+.sidebar-right .sidebar-content {
+  right: 30px !important;
+}
+.sidebar.collapsed {
+  width: 34px !important;
+}
+
 /* style sidebar panes */
 .sidebar-left .sidebar-header {
   padding-left: 30px !important;
@@ -109,27 +141,20 @@
   }
 }
 
-/* sidebar spinner */
-.sidebar-spinner {
-  position: absolute;
-  z-index: 9999;
-  display: block;
-  margin: auto;
-  height: 10em;
-  top: 30%; right: 40%;
-  transform: translate(50%,-50%);
-  width: 10em;
-  border: 6px solid rgba(0, 116, 217, 0.2);
-  border-top-color: rgba(0, 116, 217, 0.8);
-  border-radius: 50%;
-  animation: rotation 0.8s infinite linear;
+/* provenance icon for item in the left sidebar TODO */
+div.provenance-container {
+  display: none;
 }
-/* map spinner: rotation */
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(359deg);
-  }
+
+/* disable entire block of Settings */
+#newSolutionPane_settings_collapse > div[value="newSolutionPane_settings_collapseParametersPanel"] {
+  /*display: none;*/
+}
+/* disable the spatial clustering */
+div#setting-spatial_parameter.parameter-setting.solution-setting {
+  /*display: none;*/
+}
+/* disable the hide new solution from map */
+div#setting-solution_layer_parameter.parameter-setting.solution-setting {
+  /*display: none;*/
 }
