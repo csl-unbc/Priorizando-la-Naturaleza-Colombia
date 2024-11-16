@@ -98,8 +98,9 @@
 
 /* style content */
 .sidebar-pane-content {
-  height: calc(100% - 35px);
+  height: calc(100% - 17px);
   padding-top: 3px !important;
+  padding-bottom: 3px !important;
   margin-right: 3px !important;
   margin-left: 3px !important;
 }

@@ -14,7 +14,7 @@
 .solution-settings {
   flex: 3;
   display: flex;
-  max-height: 86vh;
+  max-height: 78vh;
 }
 
 .new-solution-pane {
