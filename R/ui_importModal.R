@@ -29,8 +29,7 @@ importModal <- function(id) {
   htmltools::tags$div(class = "import-modal",
     shiny::modalDialog(
       title = htmltools::tags$p(
-        "Where To Work", 
-        htmltools::tags$span("v1.1.2", style = "font-size:12px"),
+        "Priorizando la Naturaleza - Colombia",
         style = "text-align:center"
       ),
       easyClose = FALSE,
@@ -106,6 +105,16 @@ importModal <- function(id) {
         selected = "built-in project",
         multiple = FALSE
       ),
+
+      ## add project descriptions text
+      shiny::HTML(
+        "<div id=project-descriptions>
+        <p style='text-align: center;'><b>Proyectos disponibles</b></p>
+        <ul>
+            <li><b>Proyecto A:</b> Fine resolution (1km) better and closer to the actual data and features, however it takes more time to load and process</li>
+            <li><b>Proyecto B:</b> Coarse resolution (5km) works faster than fine resolution and provides to users with a quick exploration</li>
+        </ul>
+        </div>"),
   
       ## builtin method
       shiny::conditionalPanel(
