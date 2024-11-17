@@ -212,8 +212,9 @@
 
 #view .active a {
     background-color: #ced4da;
-    color: #000;
+    color: #3366CC;
     margin: 0 4px;
     border: 0px !important;
+    font-weight: 600;
 }
 
