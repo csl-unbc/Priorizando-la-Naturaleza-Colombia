@@ -82,7 +82,7 @@ server_import_builtin_data <- quote({
         html = TRUE,
         showCancelButton = FALSE,
         showConfirmButton = TRUE,
-        confirmButtonCol = "#337ab7",
+        confirmButtonCol = "#3366CC",
         text = htmltools::tags$span(
           htmltools::tags$span(
             paste0(

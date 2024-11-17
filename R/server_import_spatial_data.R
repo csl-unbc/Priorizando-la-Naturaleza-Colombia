@@ -44,7 +44,7 @@ server_import_spatial_data <- quote({
         html = FALSE,
         showCancelButton = FALSE,
         showConfirmButton = TRUE,
-        confirmButtonCol = "#337ab7",
+        confirmButtonCol = "#3366CC",
         text = "Error: at least one theme must be selected",
       )
       ### reset import button
@@ -71,7 +71,7 @@ server_import_spatial_data <- quote({
         html = FALSE,
         showCancelButton = FALSE,
         showConfirmButton = TRUE,
-        confirmButtonCol = "#337ab7",
+        confirmButtonCol = "#3366CC",
         text = "Error: not valid ESRI Shapefile format",
       )
       ### reset import button
@@ -98,7 +98,7 @@ server_import_spatial_data <- quote({
         html = FALSE,
         showCancelButton = FALSE,
         showConfirmButton = TRUE,
-        confirmButtonCol = "#337ab7",
+        confirmButtonCol = "#3366CC",
         text = paste0(
           "Error: ESRI Shapefile has missing (NA / NULL) values in the ",
           "column(s): ",

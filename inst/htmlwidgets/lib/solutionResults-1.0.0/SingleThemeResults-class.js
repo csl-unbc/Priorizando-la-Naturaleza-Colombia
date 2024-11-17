@@ -75,7 +75,7 @@ class SingleThemeResults {
         total: [1, 1],
         units,
       }], {
-        feature_goal: "#118ab2",
+        feature_goal: "#3366CC",
         feature_current_held: "#06d6a0",
         feature_solution_held: solution_color,
         total: "#cccccc44"

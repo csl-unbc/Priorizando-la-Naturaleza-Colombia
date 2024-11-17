@@ -40,3 +40,7 @@
   -webkit-animation-iteration-count: infinite !important;
   animation-iteration-count: infinite !important;
 }
+
+.btn-primary {
+  background-color: #3366cc;
+}
