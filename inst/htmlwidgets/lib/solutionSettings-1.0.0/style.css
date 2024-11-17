@@ -483,8 +483,3 @@ input[type="file"].input_config {
   margin-left: 5px;
 }
 
-/* active goal tab (single / group) */
-#view .active a {
-  background-color: #118ab2;
-  color: #fff;
-}
