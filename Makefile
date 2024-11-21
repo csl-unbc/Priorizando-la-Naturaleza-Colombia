@@ -22,23 +22,13 @@ vigns:
 
 ## simulate data
 data:
-	R --slave -e "source('inst/scripts/format-ontario-pilot-data.R')"
-	R --slave -e "source('inst/scripts/simulate-data.R')"
+	R --slave -e "source('inst/scripts/format-colombia-1km.R')"
 
 ## copy data to production directory
 prod-data:
-	cd /opt/wheretowork/projects & rm -rf ontario_pilot
-	cd /opt/wheretowork/projects & rm -rf sim_raster
-	cd /opt/wheretowork/projects & rm -rf sim_raster2
-	cd /opt/wheretowork/projects & rm -rf sim_raster3
-	cd /opt/wheretowork/projects & rm -rf sim_vector
-	cd /opt/wheretowork/projects & rm -rf sim_vector2
-	cp -R inst/extdata/projects/ontario_pilot /opt/wheretowork/projects
-	cp -R inst/extdata/projects/sim_raster /opt/wheretowork/projects
-	cp -R inst/extdata/projects/sim_raster2 /opt/wheretowork/projects
-	cp -R inst/extdata/projects/sim_raster3 /opt/wheretowork/projects
-	cp -R inst/extdata/projects/sim_vector /opt/wheretowork/projects
-	cp -R inst/extdata/projects/sim_vector2 /opt/wheretowork/projects
+	# colombia-1km
+	cd /opt/wheretowork/projects & rm -rf colombia-1km
+	cp -R inst/extdata/projects/colombia-1km /opt/wheretowork/projects
 
 ## reubild readme
 readme:
