@@ -149,7 +149,7 @@
   display: block;
   margin: auto;
   height: 10em;
-  top: 50%; right: 50%;
+  top: calc(50% - 40px); right: calc(50% - 5em);
   transform: translate(50%,-50%);
   width: 10em;
   border: 6px solid rgba(0, 116, 217, 0.2);
