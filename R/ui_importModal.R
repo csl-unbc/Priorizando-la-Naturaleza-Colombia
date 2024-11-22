@@ -115,7 +115,7 @@ importModal <- function(id) {
             <li><b>Proyecto B:</b> Coarse resolution (5km) works faster than fine resolution and provides to users with a quick exploration</li>
         </ul>
         </div>"),
-  
+
       ## builtin method
       shiny::conditionalPanel(
         ### condition
