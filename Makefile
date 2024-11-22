@@ -22,7 +22,7 @@ vigns:
 
 ## simulate data
 data:
-	R --slave -e "source('inst/scripts/format-colombia-1km.R')"
+	R --slave -e "source('inst/scripts/colombia-1km/format-colombia-1km.R')"
 
 ## copy data to production directory
 prod-data:
