@@ -13,7 +13,7 @@ library(dplyr)
 # Get input data file paths ----
 
 ## define variables
-study_area_file <- "PUs_Nacional_1km.tif"
+study_area_file <- "PU.tif"
 
 # Preliminary processing
 ## prepare raster data
@@ -64,11 +64,15 @@ raster_data <- do.call(c, raster_data)
 ## Create a mask layer based on the study area data
 mask_data <- terra::clamp(study_area_data, 0, 1)
 
-# convert NA to 0 for the raster data  # TODO - if the data is OK this is not needed
-raster_data[is.na(raster_data)] <- 0
-
-## "Clip" all the raster data to the mask layer
-raster_data <- terra::mask(raster_data, mask_data)
+# change to Byte datatype for the raster data applying each raster
+# TODO - if the data is OK this is not needed
+raster_data <- lapply(raster_data, function(x) {
+  x <- terra::clamp(x, 0, 255, datatype = "INT1U")
+  x[is.na(x)] <- 0
+  x[is.na(mask_data)] <- 255
+  x[x == 255] <- NA
+  x
+})
 
 ## Prepare theme inputs ----
 theme_data <- raster_data[[which(metadata$Type == "theme")]]
@@ -116,3 +120,10 @@ problem <- prioritizr::add_cbc_solver(problem)
 solution <- prioritizr::solve.ConservationProblem(problem, run_checks = FALSE)
 
 print(solution)
+
+# Save the solution
+solution_file <- file.path("inst", "extdata", "data", "colombia-1km", "colombia-1km-solution.tif")
+terra::writeRaster(solution, solution_file, overwrite = TRUE, NAflag = -9999)
+
+# load the solution
+solution <- terra::rast(solution_file)

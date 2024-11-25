@@ -6,8 +6,11 @@ library(dplyr)
 
 # Get input data file paths ----
 
-## define variables
-study_area_file <- "PUs_Nacional_1km.tif"
+## Planning units
+# pixel values:
+# 1: data
+# 0: NA
+study_area_file <- "PU.tif"
 
 # Preliminary processing
 ## prepare raster data
@@ -50,19 +53,30 @@ raster_data <- lapply(file.path(data_dir, metadata$File), function(x) {
     terra::project(x = raster_x, y = study_area_data, method = "ngb")
   }
 })
-# convert raster list to a combined SpatRaster
-raster_data <- do.call(c, raster_data)
 
 # 4.0 Pre-processing -----------------------------------------------------------
+
+## pixel values for features, weights, includes, excludes:
+# Binary data:
+#   1: data
+#   0: nodata
+#   255: NA
 
 ## Create a mask layer based on the study area data
 mask_data <- terra::clamp(study_area_data, 0, 1)
 
-# convert NA to 0 for the raster data  # TODO - if the data is OK this is not needed
-raster_data[is.na(raster_data)] <- 0
+# change to Byte datatype for the raster data applying each raster
+# TODO - if the data is OK this is not needed
+raster_data <- lapply(raster_data, function(x) {
+  x <- terra::clamp(x, 0, 255, datatype = "INT1U")
+  x[is.na(x)] <- 0
+  x[is.na(mask_data)] <- 255
+  x[x == 255] <- NA
+  x
+})
 
-## "Clip" all the raster data to the mask layer
-raster_data <- terra::mask(raster_data, mask_data)
+# convert raster list to a combined SpatRaster
+raster_data <- do.call(c, raster_data)
 
 ## Prepare theme inputs ----
 theme_data <- raster_data[[which(metadata$Type == "theme")]]
@@ -339,4 +353,10 @@ write_project(
   mode = "advanced",
   author_name = "Xavier C. Llano",
   author_email = "llano@unbc.ca"
+)
+
+# copy the solution colombia-1km-solution.tif to the project folder
+file.copy(
+  from = file.path("inst", "extdata", "data", "colombia-1km", "colombia-1km-solution.tif"),
+  to = file.path("inst", "extdata", "projects", "colombia-1km", "colombia-1km-solution.tif")
 )
