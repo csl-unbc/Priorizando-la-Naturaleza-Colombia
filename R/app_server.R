@@ -48,4 +48,7 @@ app_server <- function(input, output, session) {
   # export data
   eval(server_export_data)
   eval(server_export_spreadsheets)
+
+  # load solution and settings previously generated
+  eval(server_load_solution)
 }

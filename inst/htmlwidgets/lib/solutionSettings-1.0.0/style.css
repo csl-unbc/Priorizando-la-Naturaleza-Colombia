@@ -14,7 +14,7 @@
 .solution-settings {
   flex: 3;
   display: flex;
-  max-height: calc(100% - 35px);
+  max-height: calc(100% - 71px);
 }
 
 .new-solution-pane {
@@ -88,7 +88,7 @@
 }
 
 /* -- color picker */
-.solution-footer-color {
+.load-solution-color, .solution-footer-color {
   width: 25px;
 }
 
@@ -97,19 +97,24 @@
   padding-right: 0px !important;
 }
 
-.solution-footer-color .colourpicker-panel {
-  left: -50px;
+.load-solution-color .colourpicker-panel, .solution-footer-color .colourpicker-panel {
+  left: -85px;
 }
 
 /* -- colourpicker-input-container */
-.solution-footer-color .colourpicker-input-container {
+.load-solution-color .colourpicker-input-container, .solution-footer-color .colourpicker-input-container {
   width: 25px;
 }
 
 /* -- colourpicker-panel */
-.solution-footer-color .colourpicker-panel {
+.load-solution-color .colourpicker-panel, .solution-footer-color .colourpicker-panel {
   width: 184px !important;
   bottom: 38px;
+}
+
+.load-solution-list li:first-child a.active {
+  background-color: #f0f0f0 !important; /* Light gray background */
+  color: #888888 !important;           /* Gray text */
 }
 
 .solution-footer-stop-button button {

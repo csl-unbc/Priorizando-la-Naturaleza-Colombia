@@ -252,6 +252,53 @@ solutionSettings_html <- function(id, style, class, ...) {
       ### footer
       htmltools::tags$div(
         class = "solution-footer",
+
+        htmltools::tags$div(
+          class = "load-solution-list",
+          `data-toggle` = "tooltip",
+          `data-placement` = "bottom",
+          `data-container` = "body",
+          `data-trigger` = "hover",
+          title = "Select a solution previously generated for this project",
+          shinyWidgets::pickerInput(
+              inputId = "load_solution_list",
+              choices = c(""),
+              multiple = FALSE,
+              options = list(),
+              choicesOpt = list(style = c("color: grey;")),
+          ),
+          style = "width: calc(100% - 117px);"
+        ),
+        htmltools::tags$div(
+          class = "load-solution-color",
+          `data-toggle` = "tooltip",
+          `data-placement` = "top",
+          `data-container` = "body",
+          `data-trigger` = "hover",
+          title = "Select a color for the solution to load",
+          colourpicker::colourInput(
+            inputId = "load_solution_color",
+            value = "#FF0000",
+            showColour = "background",
+            label = NULL,
+            palette = "limited"
+          )
+        ),
+        htmltools::tags$div(
+          class = "load-solution-button",
+          `data-toggle` = "tooltip",
+          `data-placement` = "top",
+          `data-container` = "body",
+          `data-trigger` = "hover",
+          title = "Load the settings and solution selected",
+          shinyFeedback::loadingButton(
+            inputId = "load_solution_button",
+            label = "Load",
+            class = "btn btn-primary",
+            loadingLabel = "",
+            style = "width: 86px;"
+          )
+        ),
         htmltools::tags$div(
           class = "solution-footer-name",
           `data-toggle` = "tooltip",
@@ -271,7 +318,7 @@ solutionSettings_html <- function(id, style, class, ...) {
           class = "solution-footer-color",
           colourpicker::colourInput(
             inputId = paste0(id, "_color"),
-            value = "#FF0000",
+            value = "#FF00FF",
             showColour = "background",
             label = NULL,
             palette = "limited"

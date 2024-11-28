@@ -176,7 +176,8 @@ min_set_result <- function(area_data,
                            time_limit_2 = .Machine$integer.max,
                            verbose = FALSE,
                            id = uuid::UUIDgenerate(),
-                           try_gurobi = FALSE) {
+                           try_gurobi = FALSE,
+                           load_solution = NULL) {
   
   # validate arguments
   assertthat::assert_that(
@@ -404,7 +405,7 @@ min_set_result <- function(area_data,
   )
 
   # generate solution
-  if (!isTRUE(cache$exists(key))) {
+  if (!isTRUE(cache$exists(key)) && is.null(load_solution)) {
     ## extract indices for planning unit with at least some data
     initial_pu_idx <- which(
       Matrix::colSums(theme_data) > 0 |
@@ -459,7 +460,9 @@ min_set_result <- function(area_data,
 
   # extract/prepare solution and problem for for subsequent analysis
   ## extract solution from cache
-  initial_solution <- cache$get(key)
+  if (is.null(load_solution)) {
+    initial_solution <- cache$get(key)
+  }
   ## initial problem formulation with all planning units
   initial_problem <- suppressWarnings(prioritizr::problem(
     x = cost, features = features, rij_matrix = theme_data
@@ -468,7 +471,7 @@ min_set_result <- function(area_data,
   # generate second prioritization
   ## this formulation aims to minimize fragmentation,
   ## whilst ensuring that total cost does do not exceed a threshold
-  if ((boundary_gap >= 1e-5) && inherits(boundary_data, c("dsCMatrix", "dgCMatrix"))) {
+  if ((boundary_gap >= 1e-5) && inherits(boundary_data, c("dsCMatrix", "dgCMatrix")) && is.null(load_solution)) {
     ### calculate cost constraint for new prioritization
     max_cost <- sum(initial_solution * cost) * (boundary_gap + 1)
     ### identify "important" planning units to lock in to speed up process
@@ -550,7 +553,12 @@ min_set_result <- function(area_data,
     ### if the boundary_gap setting is very low,
     ### then we will just use the initial solution because the
     ### second prioritization is unlikely to be very different from the first
-    main_solution <- initial_solution
+    if (!is.null(load_solution)) {
+      main_solution <- as.vector(terra::rast(load_solution))
+      main_solution <- main_solution[!is.na(main_solution)]
+    } else {
+      main_solution <- initial_solution
+    }
     main_problem <- initial_problem
   }
 
