@@ -98,12 +98,16 @@
 }
 
 .load-solution-color .colourpicker-panel, .solution-footer-color .colourpicker-panel {
-  left: -85px;
+  left: -83px;
 }
 
 /* -- colourpicker-input-container */
 .load-solution-color .colourpicker-input-container, .solution-footer-color .colourpicker-input-container {
   width: 25px;
+}
+
+.colourpicker-input-container input:hover {
+  cursor: pointer;
 }
 
 /* -- colourpicker-panel */
