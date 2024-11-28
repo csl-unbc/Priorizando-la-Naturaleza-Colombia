@@ -44,6 +44,12 @@ server_load_solution <- quote({
 
     ###### load solution settings from yaml file --------------------------------
 
+    ## specify dependencies
+    shiny::req(input$newSolutionPane_settings)
+
+    ## update solution settings object
+    app_data$ss$set_setting(input$newSolutionPane_settings)
+
     # get the yaml file path from input$load_solution_list change the extension to yaml preserving the path
     load_solution_settings <- gsub("-solution.tif$", "-solution.yaml", input$load_solution_list)
 
@@ -52,26 +58,25 @@ server_load_solution <- quote({
     updated_ss <- try(app_data$ss$update_ss(settings_lst), silent = TRUE)
 
     ### update solution settings widget
-     if (identical(class(updated_ss), "try-error") || identical(class(settings_lst), "try-error")) {
-
-       msg <- paste(
-        "There was an error loading the settings from the yaml file of the solution selected."
-       )
-       ### display error modal
-       shinyalert::shinyalert(
-         title = "Oops",
-         text = msg,
-         size = "s",
-         closeOnEsc = TRUE,
-         closeOnClickOutside = TRUE,
-         type = "error",
-         showConfirmButton = TRUE,
-         confirmButtonText = "OK",
-         timer = 0,
-         confirmButtonCol = "#0275d8",
-         animation = TRUE
-       )
-     } else {
+    if (identical(class(updated_ss), "try-error") || identical(class(settings_lst), "try-error")) {
+      msg <- paste(
+      "There was an error loading the settings from the yaml file of the solution selected."
+      )
+      ### display error modal
+      shinyalert::shinyalert(
+        title = "Oops",
+        text = msg,
+        size = "s",
+        closeOnEsc = TRUE,
+        closeOnClickOutside = TRUE,
+        type = "error",
+        showConfirmButton = TRUE,
+        confirmButtonText = "OK",
+        timer = 0,
+        confirmButtonCol = "#0275d8",
+        animation = TRUE
+      )
+    } else {
       ### update theme/feature status
       vapply(app_data$themes, FUN.VALUE = logical(1), function(x) {
         if ((!all(x$get_feature_status())) &
@@ -220,13 +225,34 @@ server_load_solution <- quote({
           )
         )
       })
-     }
 
+      ## if updating include status,
+      ## then update the current amount for each feature within each theme
+      if ((identical(input$newSolutionPane_settings$type, "include")) |
+         (exists("updated_ss") && identical(class(updated_ss), "list"))) {
+        ### update object
+        app_data$ss$update_current_held(
+          theme_data = app_data$theme_data,
+          include_data = app_data$include_data
+        )
 
-
-
-
-
+        ### update widget
+        vapply(app_data$themes, FUN.VALUE = logical(1), function(x) {
+          ### update the widget
+          updateSolutionSettings(
+            inputId = "newSolutionPane_settings",
+            value = list(
+              id = x$id,
+              setting = "feature_current",
+              value = x$get_feature_current(),
+              type = "theme"
+            )
+          )
+          #### return success
+          TRUE
+        })
+      }
+    }
 
     ###### load solution --------------------------------------------------------
 
