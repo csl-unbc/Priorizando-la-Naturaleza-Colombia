@@ -170,4 +170,5 @@
 .solution-results .provenance-container i {
   font-size: 12px;
   padding-left: 2px;
+  display: none;
 }
