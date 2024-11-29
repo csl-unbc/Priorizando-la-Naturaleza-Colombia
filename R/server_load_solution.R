@@ -296,7 +296,6 @@ server_load_solution <- quote({
     try_gurobi <- input$newSolutionPane_settings_gurobi
     #### load solution path
     load_solution <- input$load_solution_list
-    print(load_solution)
     #### solution name
     curr_name <- gsub("-", " ", tools::file_path_sans_ext(basename(load_solution)))
 
