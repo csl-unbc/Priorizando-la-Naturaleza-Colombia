@@ -492,7 +492,7 @@ solutionSettings_html <- function(id, style, class, ...) {
               id = "view",
               ## single view
               shiny::tabPanel(
-                title = "optimize single goals",
+                title = "single goals",
                 value = "single",
                 htmltools::tags$div(
                   class = "single-view"
@@ -500,7 +500,7 @@ solutionSettings_html <- function(id, style, class, ...) {
               ),
               ## group view panel
               shiny::tabPanel(
-                title = "optimize group goal",
+                title = "group goal",
                 value = "group",
                 htmltools::tags$div(
                   class = "group-view",

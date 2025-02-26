@@ -1,3 +1,26 @@
+# wheretowork 1.2.5
+
+### Infrastrucure changes
+
+- Updated to rocker/shiny:4.4.1 AS base in Dockerfile. This uses Ubuntu LTS 22.04
+which aligns with our GitHub Actions ubuntu-runner. 
+
+# wheretowork 1.2.4
+
+### Minor changes and bug fixes
+- Updated Gurobi to version 12.0.0
+- Replaced gurobi.loc file to the new Gurobi Gives Back free version
+
+# wheretowork 1.2.3
+
+### Minor changes and bug fixes
+- Added `data_prep_date` attribute on `write_project` 
+- Solution setting tab names back to "single goals" and "group goal".
+- Fixed update solution bug (multi-theme and single-theme status logic).
+- Thousand comma separated values in charts and tables.
+- Activated the pointer cursor on the colour picker. Thanks @XavierCLL.
+- Adjusted tooltip position of solution charts. Thanks @XavierCLL.
+
 # wheretowork 1.1.3
 
 ### Minor changes and bug fixes
@@ -38,7 +61,7 @@ set in the [Where To Work data prep workflow](https://github.com/NCC-CNC/wtw-dat
 
 ### Major changes
 
-- Requires R version 4.4.
+- Requires R version 4.4.1
 - Migrated from raster package to terra package.
 - Updated all CRAN package dependencies to latest version as of August, 2024.
 - Updated REMOTE leaflet package dependency to latest version as of August, 2024.
