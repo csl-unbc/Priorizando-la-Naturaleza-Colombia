@@ -377,7 +377,7 @@ Exclude <- R6::R6Class(
     #' @return `list` object.
     export = function() {
       list(
-        name = enc2ascii(self$name),
+        name = self$name,
         variable = self$variable$export(),
         mandatory = self$mandatory,
         status = self$status,

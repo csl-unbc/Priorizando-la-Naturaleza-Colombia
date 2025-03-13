@@ -162,9 +162,6 @@ write_project <- function(x, dataset, path, name,
   params$includes <- includes_params
   params$excludes <- excludes_params
 
-  # coerce characters to ASCII
-  params <- enc2ascii(params)
-
   # save configuration file to disk
   yaml::write_yaml(params, path)
 
