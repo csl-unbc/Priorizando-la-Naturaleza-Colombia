@@ -63,7 +63,7 @@
 
 .solution-settings .panel-content-inner {
   overflow-y: scroll;
-  max-height: calc(100vh - 290px);
+  max-height: calc(100vh - 386px);
 }
 
 /* footer */
