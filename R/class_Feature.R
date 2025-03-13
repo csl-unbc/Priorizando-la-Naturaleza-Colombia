@@ -135,7 +135,7 @@ Feature <- R6::R6Class(
       )
       ### set fields
       self$id <- enc2ascii(id)
-      self$name <- enc2ascii(name)
+      self$name <- name
       self$variable <- variable
       self$pane <- enc2ascii(pane)
       self$visible <- visible && !hidden

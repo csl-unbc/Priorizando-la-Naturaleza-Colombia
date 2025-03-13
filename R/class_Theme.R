@@ -72,7 +72,7 @@ Theme <- R6::R6Class(
       )
       ## set fields
       self$id <- enc2ascii(id)
-      self$name <- enc2ascii(name)
+      self$name <- name
       self$feature <- feature
       self$feature_order <- feature_order
     },
@@ -538,7 +538,7 @@ Theme <- R6::R6Class(
     #' @return `list` object.
     export = function() {
       list(
-        name = enc2ascii(self$name),
+        name = self$name,
         feature = lapply(self$feature, function(x) x$export())
       )
     }

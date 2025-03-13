@@ -104,7 +104,7 @@ Include <- R6::R6Class(
       )
       ### set fields
       self$id <- enc2ascii(id)
-      self$name <- enc2ascii(name)
+      self$name <- name
       self$variable <- variable
       self$pane <- enc2ascii(pane)
       self$status <- status
@@ -377,7 +377,7 @@ Include <- R6::R6Class(
     #' @return `list` object.
     export = function() {
       list(
-        name = enc2ascii(self$name),
+        name = self$name,
         variable = self$variable$export(),
         mandatory = self$mandatory,
         status = self$status,
