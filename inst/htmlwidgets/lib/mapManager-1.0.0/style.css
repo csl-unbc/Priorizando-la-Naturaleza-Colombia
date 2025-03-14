@@ -19,6 +19,11 @@
 .mapManager {
   padding-right: 3px;
 }
+@-moz-document url-prefix() {
+  .mapManager {
+     padding-right: 14px;
+  }
+}
 
 /* layer containers */
 .map-manager-layer {
@@ -30,12 +35,17 @@
 }
 
 .map-manager-layer .single-container {
-  width: 90%;
+  width: calc(100% - 20px);
   border: 1px var(--border) solid;
   border-radius: 5px 5px 5px 5px;
   margin-bottom: 8px;
   margin-left: 17px;
   background: #FFFFFF;
+}
+@-moz-document url-prefix() {
+    .map-manager-layer .single-container {
+        width: calc(100% - 30px);
+    }
 }
 
 .map-manager-layer.hidden-layer,
@@ -191,7 +201,7 @@
 }
 
 .nav-tabs {
-    border-bottom: 1px solid #ced4da !important;
+    border-bottom: 2px solid #ced4da !important;
 }
 
 .nav-tabs > li {
