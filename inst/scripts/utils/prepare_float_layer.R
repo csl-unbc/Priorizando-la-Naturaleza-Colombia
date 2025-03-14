@@ -28,6 +28,8 @@ raster_data <- terra::crop(raster_data, ext(mask_data))
 
 # apply the mask to the raster data
 raster_data[is.na(mask_data)] <- NA
+# where the data is nan and mask is 1 burn 0
+raster_data[is.na(raster_data) & mask_data == 1] <- 0
 
 writeRaster(raster_data, out_path, datatype = "FLT4S", overwrite = TRUE)
 

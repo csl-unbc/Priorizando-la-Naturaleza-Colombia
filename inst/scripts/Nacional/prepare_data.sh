@@ -58,19 +58,19 @@ Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness riqueza_espe
 # [classes]: "Magnoliopsida" "Actinopteri" "Aves" "Amphibia"  "Squamata" "Mammalia"  "Crocodylia"
 ulimit -n 65536
 /home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o species_richness_magnoliopsida.tif $ORIG_DATA_DIR/features/21/Magnoliopsida/*.tif
-Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_magnoliopsida riqueza_especies_magnoliopsida.tif
+Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_magnoliopsida.tif riqueza_especies_magnoliopsida.tif
 /home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o species_richness_actinopteri.tif $ORIG_DATA_DIR/features/21/Actinopteri/*.tif
-Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_actinopteri riqueza_especies_actinopteri.tif
+Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_actinopteri.tif riqueza_especies_actinopteri.tif
 /home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o species_richness_aves.tif $ORIG_DATA_DIR/features/21/Aves/*.tif
-Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_aves riqueza_especies_aves.tif
+Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_aves.tif riqueza_especies_aves.tif
 /home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o species_richness_amphibia.tif $ORIG_DATA_DIR/features/21/Amphibia/*.tif
-Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_amphibia riqueza_especies_amphibia.tif
+Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_amphibia.tif riqueza_especies_amphibia.tif
 /home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o species_richness_squamata.tif $ORIG_DATA_DIR/features/21/Squamata/*.tif
-Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_squamata riqueza_especies_squamata.tif
+Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_squamata.tif riqueza_especies_squamata.tif
 /home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o species_richness_mammalia.tif $ORIG_DATA_DIR/features/21/Mammalia/*.tif
-Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_mammalia riqueza_especies_mammalia.tif
+Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_mammalia.tif riqueza_especies_mammalia.tif
 /home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o species_richness_crocodylia.tif $ORIG_DATA_DIR/features/21/Crocodylia/*.tif
-Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_crocodylia riqueza_especies_crocodylia.tif
+Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_crocodylia.tif riqueza_especies_crocodylia.tif
 
 # Servicios ecosistémicos / Almacenamiento de carbono	Carbono orgánico en suelos	11
 Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" "$ORIG_DATA_DIR/features/11/GSOC_v1.5_fixed_1km.tif" carbono_organico_suelos.tif
