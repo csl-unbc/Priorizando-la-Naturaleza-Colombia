@@ -46,31 +46,38 @@ gdal_calc.py --calc="numpy.where(A == 1, 1, 0)" -A="$ORIG_DATA_DIR/features/7/bo
 Rscript "$SCRIPTS_DIR/utils/prepare_binary_layer.R" temp.tif bosque_seco.tif
 rm temp.tif
 
+# Biomas
+# 'raster_Orobioma Azonal del Zonobioma Humedo Tropical.tif'  'raster_Pedobioma del Zonobioma Humedo Tropical.tif'  'raster_Zonobioma Humedo Tropical.tif'
+# 'raster_Orobioma del Zonobioma Humedo Tropical.tif'         'raster_Zonobioma Alternohigrico Tropical.tif'
+Rscript "$SCRIPTS_DIR/utils/prepare_binary_layer.R" "Biomas/raster_Orobioma Azonal del Zonobioma Humedo Tropical.tif" "Biomas/Orobioma Azonal del Zonobioma Humedo Tropical.tif"
+Rscript "$SCRIPTS_DIR/utils/prepare_binary_layer.R" "Biomas/raster_Pedobioma del Zonobioma Humedo Tropical.tif" "Biomas/Pedobioma del Zonobioma Humedo Tropical.tif"
+Rscript "$SCRIPTS_DIR/utils/prepare_binary_layer.R" "Biomas/raster_Zonobioma Humedo Tropical.tif" "Biomas/Zonobioma Humedo Tropical.tif"
+Rscript "$SCRIPTS_DIR/utils/prepare_binary_layer.R" "Biomas/raster_Orobioma del Zonobioma Humedo Tropical.tif" "Biomas/Orobioma del Zonobioma Humedo Tropical.tif"
+Rscript "$SCRIPTS_DIR/utils/prepare_binary_layer.R" "Biomas/raster_Zonobioma Alternohigrico Tropical.tif" "Biomas/Zonobioma Alternohigrico Tropical.tif"
+
 # Especies (8754)	21  # TODO: original image seems moved/bad reprojected or using another Colombia shape, need to fix
 # https://github.com/SMByC/StackComposed
 # using StackComposed to sum the species richness in parallel and memory efficient way
 ulimit -n 65536
 /home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o species_richness.tif $ORIG_DATA_DIR/features/21/*.tif
 Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness riqueza_especies.tif
-
 # Especies por clase
 # using StackComposed to sum the species richness in parallel and memory efficient way
 # [classes]: "Magnoliopsida" "Actinopteri" "Aves" "Amphibia"  "Squamata" "Mammalia"  "Crocodylia"
-ulimit -n 65536
-/home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o species_richness_magnoliopsida.tif $ORIG_DATA_DIR/features/21/Magnoliopsida/*.tif
-Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_magnoliopsida.tif riqueza_especies_magnoliopsida.tif
-/home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o species_richness_actinopteri.tif $ORIG_DATA_DIR/features/21/Actinopteri/*.tif
-Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_actinopteri.tif riqueza_especies_actinopteri.tif
-/home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o species_richness_aves.tif $ORIG_DATA_DIR/features/21/Aves/*.tif
-Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_aves.tif riqueza_especies_aves.tif
-/home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o species_richness_amphibia.tif $ORIG_DATA_DIR/features/21/Amphibia/*.tif
-Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_amphibia.tif riqueza_especies_amphibia.tif
-/home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o species_richness_squamata.tif $ORIG_DATA_DIR/features/21/Squamata/*.tif
-Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_squamata.tif riqueza_especies_squamata.tif
-/home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o species_richness_mammalia.tif $ORIG_DATA_DIR/features/21/Mammalia/*.tif
-Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_mammalia.tif riqueza_especies_mammalia.tif
-/home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o species_richness_crocodylia.tif $ORIG_DATA_DIR/features/21/Crocodylia/*.tif
-Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" species_richness_crocodylia.tif riqueza_especies_crocodylia.tif
+/home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o Especies/species_richness_magnoliopsida.tif $ORIG_DATA_DIR/features/21/Magnoliopsida/*.tif
+Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" Especies/species_richness_magnoliopsida.tif Especies/riqueza_especies_magnoliopsida.tif
+/home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o Especies/species_richness_actinopteri.tif $ORIG_DATA_DIR/features/21/Actinopteri/*.tif
+Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" Especies/species_richness_actinopteri.tif Especies/riqueza_especies_actinopteri.tif
+/home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o Especies/species_richness_aves.tif $ORIG_DATA_DIR/features/21/Aves/*.tif
+Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" Especies/species_richness_aves.tif Especies/riqueza_especies_aves.tif
+/home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o Especies/species_richness_amphibia.tif $ORIG_DATA_DIR/features/21/Amphibia/*.tif
+Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" Especies/species_richness_amphibia.tif Especies/riqueza_especies_amphibia.tif
+/home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o Especies/species_richness_squamata.tif $ORIG_DATA_DIR/features/21/Squamata/*.tif
+Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" Especies/species_richness_squamata.tif Especies/riqueza_especies_squamata.tif
+/home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o Especies/species_richness_mammalia.tif $ORIG_DATA_DIR/features/21/Mammalia/*.tif
+Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" Especies/species_richness_mammalia.tif Especies/riqueza_especies_mammalia.tif
+/home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o Especies/species_richness_crocodylia.tif $ORIG_DATA_DIR/features/21/Crocodylia/*.tif
+Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" Especies/species_richness_crocodylia.tif Especies/riqueza_especies_crocodylia.tif
 
 # Servicios ecosistémicos / Almacenamiento de carbono	Carbono orgánico en suelos	11
 Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" "$ORIG_DATA_DIR/features/11/GSOC_v1.5_fixed_1km.tif" carbono_organico_suelos.tif
