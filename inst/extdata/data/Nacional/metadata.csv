@@ -1,0 +1,23 @@
+Type,Theme,File,Name,Legend,Values,Color,Labels,Unit,Provenance,Order,Visible,Hidden,Goal,Downloadable
+theme,Biomas,Biomas/Orobioma Azonal del Zonobioma Humedo Tropical.tif,Orobioma Azonal del Zonobioma Humedo Tropical,manual,"0, 1","#00000000, #33CC4C","absence, presence",km2,national,,FALSE,FALSE,0.3,TRUE
+theme,Biomas,Biomas/Orobioma del Zonobioma Humedo Tropical.tif,Orobioma del Zonobioma Humedo Tropical,manual,"0, 1","#00000000, #33CC4C","absence, presence",km2,national,,FALSE,FALSE,0.3,TRUE
+theme,Biomas,Biomas/Pedobioma del Zonobioma Humedo Tropical.tif,Pedobioma del Zonobioma Humedo Tropical,manual,"0, 1","#00000000, #33CC4C","absence, presence",km2,national,,FALSE,FALSE,0.3,TRUE
+theme,Biomas,Biomas/Zonobioma Alternohigrico Tropical.tif,Zonobioma Alternohigrico Tropical,manual,"0, 1","#00000000, #33CC4C","absence, presence",km2,national,,FALSE,FALSE,0.3,TRUE
+theme,Biomas,Biomas/Zonobioma Humedo Tropical.tif,Zonobioma Humedo Tropical,manual,"0, 1","#00000000, #33CC4C","absence, presence",km2,national,,FALSE,FALSE,0.3,TRUE
+theme,Riqueza de especies,Especies/riqueza_especies_magnoliopsida.tif,Magnoliopsida,continuous,,Blues,,index,national,,FALSE,FALSE,0.3,TRUE
+theme,Riqueza de especies,Especies/riqueza_especies_actinopteri.tif,Actinopteri,continuous,,Blues,,index,national,,FALSE,FALSE,0.3,TRUE
+theme,Riqueza de especies,Especies/riqueza_especies_aves.tif,Aves,continuous,,Blues,,index,national,,FALSE,FALSE,0.3,TRUE
+theme,Riqueza de especies,Especies/riqueza_especies_amphibia.tif,Amphibia,continuous,,Blues,,index,national,,FALSE,FALSE,0.3,TRUE
+theme,Riqueza de especies,Especies/riqueza_especies_squamata.tif,Squamata,continuous,,Blues,,index,national,,FALSE,FALSE,0.3,TRUE
+theme,Riqueza de especies,Especies/riqueza_especies_mammalia.tif,Mammalia,continuous,,Blues,,index,national,,FALSE,FALSE,0.3,TRUE
+theme,Riqueza de especies,Especies/riqueza_especies_crocodylia.tif,Crocodylia,continuous,,Blues,,index,national,,FALSE,FALSE,0.3,TRUE
+theme,Páramos,paramos.tif,Páramos,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.3,TRUE
+theme,Manglares,manglares.tif,Manglares,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.3,TRUE
+theme,Humedales,humedales.tif,Humedales,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.3,TRUE
+theme,Bosque Seco,bosque_seco.tif,Bosque Seco,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.3,TRUE
+theme,Carbono Orgánico Suelos,carbono_organico_suelos.tif,Carbono Orgánico Suelos,continuous,,rocket,,unit,national,,FALSE,FALSE,0.3,TRUE
+theme,Biomasa aérea más subterránea,biomasa_aerea_mas_subterranea.tif,Biomasa aérea más subterránea,continuous,,rocket,,unit,national,,FALSE,FALSE,0.3,TRUE
+theme,Recarga de agua subterránea,recarga_agua_subterranea.tif,Recarga de agua subterránea,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.3,TRUE
+include,,RUNAP.tif,RUNAP,manual,"0, 1","#00000000, #7fbc41","not included, included",km2,national,,TRUE,FALSE,0.3,TRUE
+include,,OMECs.tif,OMECs,manual,"0, 1","#00000000, #7fbc41","not included, included",km2,national,,TRUE,FALSE,0.3,TRUE
+weight,,IHEH_2022.tif,Índice de Huella Espacial Humana,continuous,,rocket,,index,national,,FALSE,FALSE,0.3,TRUE
