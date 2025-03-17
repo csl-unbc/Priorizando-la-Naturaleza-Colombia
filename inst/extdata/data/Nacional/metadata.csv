@@ -20,4 +20,4 @@ theme,Biomasa aérea más subterránea,biomasa_aerea_mas_subterranea.tif,Biomasa
 theme,Recarga de agua subterránea,recarga_agua_subterranea.tif,Recarga de agua subterránea,manual,"0, 1","#00000000, #ffed6f","absence, presence",km2,national,,FALSE,FALSE,0.3,TRUE
 include,,RUNAP.tif,RUNAP,manual,"0, 1","#00000000, #7fbc41","not included, included",km2,national,,TRUE,FALSE,0.3,TRUE
 include,,OMECs.tif,OMECs,manual,"0, 1","#00000000, #7fbc41","not included, included",km2,national,,TRUE,FALSE,0.3,TRUE
-weight,,IHEH_2022.tif,Índice de Huella Espacial Humana,continuous,,rocket,,index,national,,FALSE,FALSE,0.3,TRUE
+weight,,IHEH_2022_log.tif,Índice de Huella Espacial Humana,continuous,,rocket,,index,national,,FALSE,FALSE,0.3,TRUE
