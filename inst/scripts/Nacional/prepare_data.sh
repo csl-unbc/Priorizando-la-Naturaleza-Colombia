@@ -28,24 +28,6 @@ rm temp.tif temp2.tif
 # Ecosistemas IAVH 1
 # TODO: many ecosystems for the webtool and for complete runs it necessary define different targets by ecosystem
 
-# Ecosistemas estratégicos	Páramo	4
-gdal_calc.py --calc="numpy.where(A == 1, 1, 0)" -A="$ORIG_DATA_DIR/features/4/paramos.tif" --outfile temp.tif
-Rscript "$SCRIPTS_DIR/utils/prepare_binary_layer.R" temp.tif paramos.tif
-rm temp.tif
-
-# Ecosistemas estratégicos	Manglar	24  # TODO: original image seems moved/bad reprojected or using another Colombia shape, need to fix
-Rscript "$SCRIPTS_DIR/utils/prepare_binary_layer.R" "$ORIG_DATA_DIR/features/24/Manglares INVEMAR.tif" manglares.tif
-
-# Ecosistemas estratégicos	Humedales	6
-gdal_calc.py --calc="numpy.where(A == 1, 1, 0)" -A="$ORIG_DATA_DIR/features/6/humedales.tif" --outfile temp.tif
-Rscript "$SCRIPTS_DIR/utils/prepare_binary_layer.R" temp.tif humedales.tif
-rm temp.tif
-
-# Ecosistemas estratégicos	Bosque seco	7  #todo: burn 0 in the background for colombia?
-gdal_calc.py --calc="numpy.where(A == 1, 1, 0)" -A="$ORIG_DATA_DIR/features/7/bosque_seco.tif" --outfile temp.tif
-Rscript "$SCRIPTS_DIR/utils/prepare_binary_layer.R" temp.tif bosque_seco.tif
-rm temp.tif
-
 # Biomas
 # 'raster_Orobioma Azonal del Zonobioma Humedo Tropical.tif'  'raster_Pedobioma del Zonobioma Humedo Tropical.tif'  'raster_Zonobioma Humedo Tropical.tif'
 # 'raster_Orobioma del Zonobioma Humedo Tropical.tif'         'raster_Zonobioma Alternohigrico Tropical.tif'
@@ -78,6 +60,24 @@ Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" Especies/species_richness_squ
 Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" Especies/species_richness_mammalia.tif Especies/riqueza_especies_mammalia.tif
 /home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o Especies/species_richness_crocodylia.tif $ORIG_DATA_DIR/features/21/Crocodylia/*.tif
 Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" Especies/species_richness_crocodylia.tif Especies/riqueza_especies_crocodylia.tif
+
+# Ecosistemas estratégicos	Páramo	4
+gdal_calc.py --calc="numpy.where(A == 1, 1, 0)" -A="$ORIG_DATA_DIR/features/4/paramos.tif" --outfile temp.tif
+Rscript "$SCRIPTS_DIR/utils/prepare_binary_layer.R" temp.tif paramos.tif
+rm temp.tif
+
+# Ecosistemas estratégicos	Manglar	24  # TODO: original image seems moved/bad reprojected or using another Colombia shape, need to fix
+Rscript "$SCRIPTS_DIR/utils/prepare_binary_layer.R" "$ORIG_DATA_DIR/features/24/Manglares INVEMAR.tif" manglares.tif
+
+# Ecosistemas estratégicos	Humedales	6
+gdal_calc.py --calc="numpy.where(A == 1, 1, 0)" -A="$ORIG_DATA_DIR/features/6/humedales.tif" --outfile temp.tif
+Rscript "$SCRIPTS_DIR/utils/prepare_binary_layer.R" temp.tif humedales.tif
+rm temp.tif
+
+# Ecosistemas estratégicos	Bosque seco	7  #todo: burn 0 in the background for colombia?
+gdal_calc.py --calc="numpy.where(A == 1, 1, 0)" -A="$ORIG_DATA_DIR/features/7/bosque_seco.tif" --outfile temp.tif
+Rscript "$SCRIPTS_DIR/utils/prepare_binary_layer.R" temp.tif bosque_seco.tif
+rm temp.tif
 
 # Servicios ecosistémicos / Almacenamiento de carbono	Carbono orgánico en suelos	11
 Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" "$ORIG_DATA_DIR/features/11/GSOC_v1.5_fixed_1km.tif" carbono_organico_suelos.tif
