@@ -1,19 +1,29 @@
 version: "3.9"
 services:
   app:
+    image: naturecons/wheretowork
     build:
       context: .
       dockerfile: Dockerfile
       target: shiny
-    image: naturecons/wheretowork
-    ports:
-      - "3838:3838"
+    expose:
+      - 3838
+    network_mode: bridge
     environment:
       # environmental variables defined in ./.env that get sent to container
       - FORCE_DEFAULT_PROJECTS
       - PROJECT_DIRECTORY
       - R_CONFIG_ACTIVE
+      # for reverse nginx proxy
+      - VIRTUAL_HOST=elsa.unbiodiversitylab.org
+      - VIRTUAL_PORT=3838
+      - VIRTUAL_PATH=/priorizando-la-naturaleza-colombia/
+      - VIRTUAL_DEST=/
     volumes:
       - "${PROJECT_DIRECTORY}:/projects"
       - "${PATH_TO_GUROBI_LICENSE}:/opt/gurobi/gurobi.lic:ro"
-      
+
+networks:
+    default:
+       external:
+           name: nginx-proxy

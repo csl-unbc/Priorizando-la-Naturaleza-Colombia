@@ -1,0 +1,20 @@
+# /etc/systemd/system/priorizando-la-naturaleza-colombia.service
+# sudo systemctl start priorizando-la-naturaleza-colombia.service
+# sudo systemctl stop priorizando-la-naturaleza-colombia.service
+
+[Unit]
+Description=Systemd service for Priorizando la Naturaleza - Colombia
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=simple
+User=xavier
+Group=docker
+WorkingDirectory=/data/Priorizando-la-Naturaleza-Colombia/Priorizando-la-Naturaleza-Colombia
+ExecStart=/usr/bin/env /usr/bin/docker compose -f /data/Priorizando-la-Naturaleza-Colombia/Priorizando-la-Naturaleza-Colombia/docker-compose.yml up --build --remove-orphans --force-recreate
+ExecStop=/usr/bin/env /usr/bin/docker compose -f /data/Priorizando-la-Naturaleza-Colombia/Priorizando-la-Naturaleza-Colombia/docker-compose.yml stop
+StandardOutput=syslog
+
+[Install]
+WantedBy=multi-user.target
