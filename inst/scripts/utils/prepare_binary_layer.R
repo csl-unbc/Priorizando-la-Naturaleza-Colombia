@@ -19,6 +19,7 @@ if (length(args) < 2) {
 # Path to the input raster file
 raster_path <- args[1]
 raster_data <- terra::rast(raster_path)
+print(paste("Processing:", raster_path))
 
 # Path to the output raster file
 out_path <- args[2]
@@ -35,6 +36,12 @@ raster_data <- terra::clamp(raster_data, 0, 255, datatype = "INT1U")
 raster_data[is.na(raster_data)] <- 0
 raster_data[is.na(mask_data)] <- 255
 raster_data[raster_data == 255] <- NA
+raster_data[raster_data > 1] <- 0
+
+# check if raster data is empty (without ones)
+if (sum(raster_data[] == 1, na.rm = TRUE) == 0) {
+  stop("The raster data is empty.")
+}
 
 writeRaster(raster_data, out_path, datatype = "INT1U", overwrite = TRUE)
 
