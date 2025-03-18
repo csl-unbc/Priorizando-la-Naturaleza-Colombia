@@ -80,10 +80,9 @@ ENV R_SHINY_HOST=0.0.0.0
 RUN env | grep R_SHINY_PORT > /home/shiny/.Renviron && \
     env | grep R_SHINY_HOST >> /home/shiny/.Renviron
 
-## set working directory
-RUN mkdir /home/shiny/app
-COPY app.R /home/shiny/app/app.R
-WORKDIR /home/shiny/app
+## set app
+COPY app.R /app/app.R
+WORKDIR /app
 
 ## run app
-CMD ["/usr/local/bin/Rscript", "/home/shiny/app/app.R"]
+CMD ["/usr/local/bin/Rscript", "/app/app.R"]
