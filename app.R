@@ -23,4 +23,4 @@ if (!is.null(Sys.getenv("R_SHINY_HOST"))) {
 }
 
 # launch application
-wheretowork::run_app()
+run_app()

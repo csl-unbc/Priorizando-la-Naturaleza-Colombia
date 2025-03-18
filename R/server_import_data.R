@@ -44,7 +44,7 @@ import_data <- function(x, mode) {
     units::set_units(units::set_units(area_ref_value, "m^2"), "km^2")
   )
   area_budget_parameter <-
-    wheretowork::new_parameter(
+    new_parameter(
       name = "Total area budget",
       status = FALSE,
       value = 1,
@@ -63,7 +63,7 @@ import_data <- function(x, mode) {
     )
 
   boundary_gap_parameter <-
-    wheretowork::new_parameter(
+    new_parameter(
       name = "Spatial clustering",
       status = FALSE,
       value = 1,
@@ -85,7 +85,7 @@ import_data <- function(x, mode) {
     )
   
   solution_layer_parameter <-
-    wheretowork::new_parameter(
+    new_parameter(
       name = "Hide solution layer from map",
       status = ifelse(shiny::isTruthy(x$dataset$get_boundary_data()), FALSE, TRUE),
       hide = TRUE,
@@ -97,7 +97,7 @@ import_data <- function(x, mode) {
     )
   
   overlap_parameter <-
-    wheretowork::new_parameter(
+    new_parameter(
       name = "Override includes",
       status = FALSE,
       hide = TRUE,
@@ -109,7 +109,7 @@ import_data <- function(x, mode) {
     )
   
   fileinput_parameter <-
-    wheretowork::new_parameter(
+    new_parameter(
       name = "Update solution settings",
       status = FALSE,
       hide = TRUE,

@@ -3,7 +3,7 @@ app_global <- quote({
   set.seed(200)
 
   # print initial memory usage
-  if (isTRUE(wheretowork::get_golem_config("monitor"))) {
+  if (isTRUE(get_golem_config("monitor"))) {
       cli::cli_rule()
       golem::print_dev("Initial memory used: ")
       golem::print_dev(lobstr::mem_used())
@@ -16,7 +16,7 @@ app_global <- quote({
 
   # initialize asynchronous processing
   ## identify strategy
-  strategy <- wheretowork::get_golem_config("strategy")
+  strategy <- get_golem_config("strategy")
   if (identical(strategy, "auto")) {
     if (identical(Sys.getenv("R_CONFIG_ACTIVE"), "shinyapps")) {
       strategy <- "multicore"
@@ -28,7 +28,7 @@ app_global <- quote({
   }
   ## set future settings
   options(
-    future.wait.timeout = wheretowork::get_golem_config("worker_time_out")
+    future.wait.timeout = get_golem_config("worker_time_out")
   )
   ## implement strategy
   golem::print_dev(paste("plan strategy:", strategy))
@@ -71,13 +71,13 @@ app_global <- quote({
   # set project data directory
   if (identical(Sys.getenv("FORCE_DEFAULT_PROJECTS"), "true")) {
     project_dir <- system.file("extdata", "projects", package = "wheretowork")
-  } else if (identical(wheretowork::get_golem_config("projects"), "default")) {
+  } else if (identical(get_golem_config("projects"), "default")) {
     project_dir <- system.file("extdata", "projects", package = "wheretowork")
   } else {
-    project_dir <- wheretowork::get_golem_config("projects")
+    project_dir <- get_golem_config("projects")
   }
 
   # import projects
-  project_data <- wheretowork::find_projects(project_dir, user_groups)
+  project_data <- find_projects(project_dir, user_groups)
 
 })
