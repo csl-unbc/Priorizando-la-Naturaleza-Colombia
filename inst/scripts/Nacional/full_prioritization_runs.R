@@ -8,7 +8,6 @@ library(raster)
 library(terra)
 library(openxlsx)
 library(parallel)
-library(purrr)
 
 # setwd("/home/xavier/Projects/UNBC/Priorizando la Naturaleza - Colombia/Priorizando-la-Naturaleza-Colombia/inst/extdata/data/Nacional")
 setwd("/data/Priorizando-la-Naturaleza-Colombia/Full-Prioritizatio-Runs/Nacional")
@@ -60,15 +59,13 @@ for (i in 1:nrow(scenarios)) {
   feature_list <- strsplit(scenarios$elemento_priorizacion[i], ",")[[1]] %>% str_trim()
 
   if ("Biomas" %in% feature_list) {
-    biomas <- list.files("Layers/Biomas", pattern = ".tif$", full.names = TRUE) %>%
-      map(raster)
-    feature_stack <- stack(feature_stack, stack(biomas))
+      biomas <- list.files("Layers/Biomas", pattern = ".tif$", full.names = TRUE) %>%
+      feature_stack <- stack(feature_stack, stack(mclapply(biomas, raster, mc.cores = parallel::detectCores())))
   }
 
   if ("Especies (8700)" %in% feature_list) {
-      species <- list.files(file.path(ORIG_DATA_DIR, "features/21_fixed/"), pattern = ".tif$", full.names = TRUE) %>%
-      map(raster)
-      feature_stack <- stack(feature_stack, stack(species))
+      species <- list.files(file.path(ORIG_DATA_DIR, "features/21_fixed"), pattern = ".tif$", full.names = TRUE)
+      feature_stack <- stack(feature_stack, stack(mclapply(species, raster, mc.cores = parallel::detectCores())))
   }
 
   if ("Páramo" %in% feature_list) {
