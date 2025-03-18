@@ -37,6 +37,7 @@ Rscript "$SCRIPTS_DIR/utils/prepare_binary_layer.R" "Biomas/raster_Zonobioma Hum
 Rscript "$SCRIPTS_DIR/utils/prepare_binary_layer.R" "Biomas/raster_Orobioma del Zonobioma Humedo Tropical.tif" "Biomas/Orobioma del Zonobioma Humedo Tropical.tif"
 Rscript "$SCRIPTS_DIR/utils/prepare_binary_layer.R" "Biomas/raster_Zonobioma Alternohigrico Tropical.tif" "Biomas/Zonobioma Alternohigrico Tropical.tif"
 
+# Species Richness
 # Especies (8754)	21  # TODO: original image seems moved/bad reprojected or using another Colombia shape, need to fix
 # https://github.com/SMByC/StackComposed
 # using StackComposed to sum the species richness in parallel and memory efficient way
@@ -60,6 +61,12 @@ Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" Especies/species_richness_squ
 Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" Especies/species_richness_mammalia.tif Especies/riqueza_especies_mammalia.tif
 /home/xavier/Projects/SMBYC/StackComposed/bin/stack-composed -stat sum -preproc ==1 -nodata 0 -bands 1 -chunks 100 -p 2 -o Especies/species_richness_crocodylia.tif $ORIG_DATA_DIR/features/21/Crocodylia/*.tif
 Rscript "$SCRIPTS_DIR/utils/prepare_float_layer.R" Especies/species_richness_crocodylia.tif Especies/riqueza_especies_crocodylia.tif
+
+# Prepare species for full prioritization
+# Especies (8754)	21
+in_dir="/data/Priorizando-la-Naturaleza-Colombia/Full-Prioritizatio-Runs/data/features/21"
+out_dir="/data/Priorizando-la-Naturaleza-Colombia/Full-Prioritizatio-Runs/data/features/21_fixed"
+parallel -j 16 Rscript "$SCRIPTS_DIR/utils/prepare_binary_layer.R" {} "$out_dir/{/}" ::: $in_dir/*.tif
 
 # Ecosistemas estratégicos	Páramo	4
 gdal_calc.py --calc="numpy.where(A == 1, 1, 0)" -A="$ORIG_DATA_DIR/features/4/paramos.tif" --outfile temp.tif
