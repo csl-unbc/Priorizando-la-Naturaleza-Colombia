@@ -7,6 +7,7 @@ library(glue)
 library(raster)
 library(terra)
 library(openxlsx)
+library(parallel)
 
 # setwd("/home/xavier/Projects/UNBC/Priorizando la Naturaleza - Colombia/Priorizando-la-Naturaleza-Colombia/inst/extdata/data/Nacional")
 setwd("/data/Priorizando-la-Naturaleza-Colombia/Full-Prioritizatio-Runs/Nacional")
@@ -64,7 +65,7 @@ for (i in 1:nrow(scenarios)) {
   }
 
   if ("Especies (8700)" %in% feature_list) {
-      species <- list.files(file.path(ORIG_DATA_DIR, "features/21/"), pattern = ".tif$", full.names = TRUE) %>%
+      species <- list.files(file.path(ORIG_DATA_DIR, "features/21_fixed/"), pattern = ".tif$", full.names = TRUE) %>%
       map(raster)
       feature_stack <- stack(feature_stack, stack(species))
   }
@@ -142,7 +143,7 @@ for (i in 1:nrow(scenarios)) {
     add_relative_targets(targets) %>%
     add_locked_in_constraints(terra::rast(combined_locked_in)) %>%
     add_binary_decisions() %>%
-    add_cbc_solver(threads = 3)
+    add_cbc_solver(threads = parallel::detectCores())
 
   presolve_check(cp_problem)
 
