@@ -8,6 +8,7 @@ library(raster)
 library(terra)
 library(openxlsx)
 library(parallel)
+library(purrr)
 
 # setwd("/home/xavier/Projects/UNBC/Priorizando la Naturaleza - Colombia/Priorizando-la-Naturaleza-Colombia/inst/extdata/data/Nacional")
 setwd("/data/Priorizando-la-Naturaleza-Colombia/Full-Prioritizatio-Runs/Nacional")

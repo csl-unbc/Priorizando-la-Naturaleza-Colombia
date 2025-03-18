@@ -15,6 +15,7 @@ if (length(args) < 2) {
 # Path to the input raster file
 raster_path <- args[1]
 raster_data <- terra::rast(raster_path)
+print(paste("Processing:", raster_path))
 
 # Path to the output raster file
 out_path <- args[2]
