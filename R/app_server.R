@@ -10,7 +10,7 @@ app_server <- function(input, output, session) {
   eval(server_initialize_app)
 
   ## print debugging information
-  if (isTRUE(get_golem_config("monitor"))) {
+  if (isTRUE(wheretowork::get_golem_config("monitor"))) {
     shiny::observe({
       shiny::invalidateLater(3000)
       cli::cli_rule()
