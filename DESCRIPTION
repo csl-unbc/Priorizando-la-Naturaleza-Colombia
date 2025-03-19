@@ -151,6 +151,7 @@ Collate:
     'server_import_manual_data.R'
     'server_import_spatial_data.R'
     'server_initialize_app.R'
+    'server_load_solution.R'
     'server_update_map.R'
     'server_update_solution_results.R'
     'server_update_solution_settings.R'
