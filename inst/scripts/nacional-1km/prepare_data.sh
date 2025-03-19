@@ -7,12 +7,12 @@ SCRIPTS_DIR="/home/xavier/Projects/UNBC/Priorizando la Naturaleza - Colombia/Pri
 ORIG_DATA_DIR="/run/media/xavier/SSD-Data/UNBC-UNDP/Priorizando la Naturaleza - Colombia/Data"
 
 # output data directory
-OUT_DIR="/home/xavier/Projects/UNBC/Priorizando la Naturaleza - Colombia/Priorizando-la-Naturaleza-Colombia/inst/extdata/data/Nacional/Layers"
+OUT_DIR="/home/xavier/Projects/UNBC/Priorizando la Naturaleza - Colombia/Priorizando-la-Naturaleza-Colombia/inst/extdata/data/nacional-1km/layers"
 cd $OUT_DIR
 
 #### PLANING UNITS ####
 
-# PU Nacional
+# PU nacional-1km
 
 gdal_calc.py --calc "1*A!=0" -A="${ORIG_DATA_DIR}/PUs/PUs_Nacional_1km.tif" --outfile temp.tif
 gdalwarp -overwrite -ot Byte -of GTiff temp.tif temp2.tif

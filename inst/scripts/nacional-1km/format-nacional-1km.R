@@ -14,10 +14,10 @@ study_area_file <- "PU_Nacional_1km.tif"
 
 # Preliminary processing
 ## prepare raster data
-data_dir <- file.path("inst", "extdata", "data", "Nacional", "Layers")
+data_dir <- file.path("inst", "extdata", "data", "nacional-1km", "layers")
 
 # Read metdata file
-metadata_path <- file.path("inst", "extdata", "data", "Nacional", "metadata.csv")
+metadata_path <- file.path("inst", "extdata", "data", "nacional-1km", "metadata.csv")
 metadata <- tibble::as_tibble(
   utils::read.table(metadata_path, stringsAsFactors = FALSE, sep = ",", header = TRUE, comment.char = "", quote="\"")
 )
@@ -276,27 +276,30 @@ includes <- lapply(seq_len(terra::nlyr(include_data)), function(i) {
 # 6.0  Export Where To Work objects --------------------------------------------
 
 # delete previous project
-unlink("inst/extdata/projects/Nacional", recursive = TRUE, force = TRUE)
+unlink("inst/extdata/projects/nacional-1km", recursive = TRUE, force = TRUE)
 # Create output folder if needed
-dir.create("inst/extdata/projects/Nacional", recursive = TRUE, showWarnings = FALSE)
+dir.create("inst/extdata/projects/nacional-1km", recursive = TRUE, showWarnings = FALSE)
 
 ## Save project to disk ----
 write_project(
   x = c(themes, includes, weights),
   dataset = dataset,
   name = "Nacional - 1km",
-  path = "inst/extdata/projects/Nacional/nacional.yaml",
-  spatial_path = "inst/extdata/projects/Nacional/nacional_spatial.tif",
-  attribute_path = "inst/extdata/projects/Nacional/nacional_attribute.csv.gz",
-  boundary_path = "inst/extdata/projects/Nacional/nacional_boundary.csv.gz",
+  path = "inst/extdata/projects/nacional-1km/nacional.yaml",
+  spatial_path = "inst/extdata/projects/nacional-1km/nacional_spatial.tif",
+  attribute_path = "inst/extdata/projects/nacional-1km/nacional_attribute.csv.gz",
+  boundary_path = "inst/extdata/projects/nacional-1km/nacional_boundary.csv.gz",
   mode = "advanced",
   author_name = "Xavier C. Llano",
   author_email = "llano@unbc.ca"
 )
 
-# # copy the solution nacional-solution.tif to the project folder
-# file.copy(
-#   from = file.path("inst", "extdata", "data", "Nacional", "nacional-solution.tif"),
-#   to = file.path("inst", "extdata", "projects", "Nacional", "nacional-solution.tif")
-# )
-# # TODO copy the settings yaml file to the project folder
+# copy the solutions to the project folder
+file.copy(
+  from = list.files(file.path("inst", "extdata", "data", "nacional-1km", "solutions"), pattern = "-solution.tif$", full.names = TRUE),
+  to = file.path("inst", "extdata", "projects", "nacional-1km")
+)
+file.copy(
+  from = list.files(file.path("inst", "extdata", "data", "nacional-1km", "solutions"), pattern = "-solution.yaml$", full.names = TRUE),
+  to = file.path("inst", "extdata", "projects", "nacional-1km")
+)

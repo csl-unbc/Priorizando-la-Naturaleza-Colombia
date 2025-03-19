@@ -39,7 +39,7 @@ normalize <- function(r) {
 
 ################################################################################
 # Planning Units
-PU <- raster("Layers/PU_Nacional_1km.tif")
+PU <- raster("layers/PU_Nacional_1km.tif")
 
 ################################################################################
 # Define the scenarios to run
@@ -59,7 +59,7 @@ for (i in 1:nrow(scenarios)) {
   feature_list <- strsplit(scenarios$elemento_priorizacion[i], ",")[[1]] %>% str_trim()
 
   if ("Biomas" %in% feature_list) {
-      biomas <- list.files("Layers/Biomas", pattern = ".tif$", full.names = TRUE) %>%
+      biomas <- list.files("layers/Biomas", pattern = ".tif$", full.names = TRUE) %>%
       feature_stack <- stack(feature_stack, stack(mclapply(biomas, raster, mc.cores = parallel::detectCores())))
   }
 
@@ -69,44 +69,44 @@ for (i in 1:nrow(scenarios)) {
   }
 
   if ("Páramo" %in% feature_list) {
-      paramos <- raster("Layers/paramos.tif")
+      paramos <- raster("layers/paramos.tif")
       feature_stack <- stack(feature_stack, paramos)
   }
 
   if ("Manglar" %in% feature_list) {
-      manglares <- raster("Layers/manglares.tif")
+      manglares <- raster("layers/manglares.tif")
       feature_stack <- stack(feature_stack, manglares)
   }
 
   if ("Humedales" %in% feature_list) {
-      humedales <- raster("Layers/humedales.tif")
+      humedales <- raster("layers/humedales.tif")
       feature_stack <- stack(feature_stack, humedales)
   }
 
   if ("Bosque seco" %in% feature_list) {
-      bosque_seco <- raster("Layers/bosque_seco.tif")
+      bosque_seco <- raster("layers/bosque_seco.tif")
       feature_stack <- stack(feature_stack, bosque_seco)
   }
 
   if ("Carbono orgánico en suelos" %in% feature_list) {
-      carbono_organico_suelos <- normalize(raster("Layers/carbono_organico_suelos.tif"))
+      carbono_organico_suelos <- normalize(raster("layers/carbono_organico_suelos.tif"))
       feature_stack <- stack(feature_stack, carbono_organico_suelos)
   }
 
   if ("Biomasa aérea más biomasa subterránea" %in% feature_list) {
-      biomasa_aerea_mas_subterranea <- normalize(raster("Layers/biomasa_aerea_mas_subterranea.tif"))
+      biomasa_aerea_mas_subterranea <- normalize(raster("layers/biomasa_aerea_mas_subterranea.tif"))
       feature_stack <- stack(feature_stack, biomasa_aerea_mas_subterranea)
   }
 
   if ("Recarga de agua subterranea" %in% feature_list) {
-      recarga_agua_subterranea <- normalize(raster("Layers/recarga_agua_subterranea.tif"))
+      recarga_agua_subterranea <- normalize(raster("layers/recarga_agua_subterranea.tif"))
       feature_stack <- stack(feature_stack, recarga_agua_subterranea)
   }
 
   ################################################################################
   # Cost
   if ("IHEH_2022" == scenarios$costo[i]) {
-    cost_layer <- raster("Layers/IHEH_2022_log.tif")
+    cost_layer <- raster("layers/IHEH_2022_log.tif")
   } else {
     cost_layer <- PU
   }
@@ -121,12 +121,12 @@ for (i in 1:nrow(scenarios)) {
   includes_list <- strsplit(scenarios$inclusion[i], ",")[[1]] %>% str_trim()
 
   if ("RUNAP" %in% includes_list) {
-    runap <- raster("Layers/RUNAP.tif")
+    runap <- raster("layers/RUNAP.tif")
     include_stack <- stack(include_stack, runap)
   }
 
   if ("OMECs" %in% includes_list) {
-      omecs <- raster("Layers/OMECs.tif")
+      omecs <- raster("layers/OMECs.tif")
       include_stack <- stack(include_stack, omecs)
   }
 
@@ -152,7 +152,7 @@ for (i in 1:nrow(scenarios)) {
   print(cp_solution)
 
   # save the solution
-  file_name <- glue("Solutions/solution_{scenarios$escenario[i]}.tif")
+  file_name <- glue("solutions/{scenarios$escenario[i]}-solution.tif")
   terra::writeRaster(cp_solution, file_name, filetype = "GTiff", overwrite = TRUE)
 
 }
