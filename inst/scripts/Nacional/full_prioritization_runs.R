@@ -44,7 +44,7 @@ PU <- raster("Layers/PU_Nacional_1km.tif")
 ################################################################################
 # Define the scenarios to run
 scenarios <- read.xlsx("../scenarios_to_run_webtool.xlsx")
-scenarios <- scenarios[scenarios$SIRAP == "Nacional",]
+scenarios <- scenarios[scenarios$SIRAP == "Nacional" & (scenarios$costo == "PU" | scenarios$costo == "IHEH_2022"),]
 
 # iterate over the scenarios
 for (i in 1:nrow(scenarios)) {
@@ -143,10 +143,10 @@ for (i in 1:nrow(scenarios)) {
     add_binary_decisions() %>%
     add_cbc_solver(threads = parallel::detectCores())
 
-  presolve_check(cp_problem)
+  # presolve_check(cp_problem)
 
   # solve the problem
-  cp_solution <- solve(cp_problem)
+  cp_solution <- solve(cp_problem, force = TRUE)
 
   # print the solution
   print(cp_solution)
