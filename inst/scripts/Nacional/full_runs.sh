@@ -1,6 +1,5 @@
 #!/bin/bash
-
+ulimit -n 65536
 ulimit -s unlimited
-export CPL_TMPDIR=/data/tmp
 
-Rscript full_prioritization_runs.Rscript
+Rscript full_prioritization_runs.R
