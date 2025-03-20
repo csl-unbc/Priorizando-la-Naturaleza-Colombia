@@ -21,7 +21,7 @@ services:
       - VIRTUAL_DEST=/
     volumes:
       - "${PROJECT_DIRECTORY}:/projects"
-#      - "${PATH_TO_GUROBI_LICENSE}:/opt/gurobi/gurobi.lic:ro"
+      - "${PATH_TO_GUROBI_LICENSE}:/opt/gurobi/gurobi.lic:ro"
 
 networks:
     default:
