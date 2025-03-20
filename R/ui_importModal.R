@@ -68,28 +68,14 @@ importModal <- function(id) {
         
        # logos
        shiny::hr(),
-       htmltools::tags$p(class = "dev-title", "Developed by:"), 
+       htmltools::tags$p(class = "dev-title", "Herramienta basada en WhereToWork, desarrollada por:"),
        htmltools::tags$div(class = "sponser-logos",
-       htmltools::tags$div(class = "sponser-logo-row",                   
+       htmltools::tags$div(class = "sponser-logo-row",
          htmltools::tags$img(
-           class = "ncc-logo",
-           src ="www/logo_ncc.png"
+           class = "wtw-logo",
+           src ="www/wtw_logos.webp"
          ),
-         htmltools::tags$img(
-           src ="www/logo_carleton.png"
-         )
        ),
-       htmltools::tags$p(class = "support-title", "Supported by:"),
-       htmltools::tags$div(class = "sponser-logo-row last-row",
-        htmltools::tags$img(
-           class = "eccc-logo",
-          src ="www/logo_eccc.png"
-          ),                           
-         htmltools::tags$img(
-           class = "rbc-logo",
-           src ="www/logo_rbc.png"
-         )
-        ),
        ),
       ),
       
@@ -111,8 +97,9 @@ importModal <- function(id) {
         "<div id=project-descriptions>
         <p style='text-align: center;'><b>Proyectos disponibles</b></p>
         <ul>
-            <li><b>Proyecto A:</b> Fine resolution (1km) better and closer to the actual data and features, however it takes more time to load and process</li>
-            <li><b>Proyecto B:</b> Coarse resolution (5km) works faster than fine resolution and provides to users with a quick exploration</li>
+            <li><b>Nacional 1km:</b> Área continental de Colombia a 1km resolución</li>
+            <li><b>Eje Cafetero:</b> (en desarrollo)</li>
+            <li><b>Orinoquía:</b> (en desarrollo)</li>
         </ul>
         </div>"),
 

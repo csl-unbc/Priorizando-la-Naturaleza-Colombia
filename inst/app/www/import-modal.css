@@ -30,7 +30,7 @@
 
 .import-modal .dev-title {
   font-weight: 700;
-  font-size: 18px;
+  font-size: 14px;
   margin-bottom: -20px;
   position: relative;
   z-index: 400;
@@ -38,7 +38,7 @@
 
 .import-modal .support-title {
   font-weight: 700;
-  font-size: 18px;
+  font-size: 14px;
   margin-top: -18px;
   position: relative;
   z-index: 400;  
@@ -53,6 +53,11 @@
 
 .import-modal .last-row {
   margin-top: -35px;
+}
+
+.wtw-logo {
+  margin-top: 35px;
+  width: 100%;
 }
 
 .ncc-logo {
