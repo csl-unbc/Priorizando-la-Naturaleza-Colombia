@@ -61,6 +61,8 @@ COPY NAMESPACE /app
 RUN cd /app && \
     Rscript -e 'remotes::install_local(upgrade = "never")'
 
+RUN cd /app && R -e "install.packages('devtools', repos='https://cloud.r-project.org/')"
+
 # set command
 CMD ["/bin/bash"]
 

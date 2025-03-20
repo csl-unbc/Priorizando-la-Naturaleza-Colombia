@@ -21,17 +21,11 @@ vigns:
 	R --slave -e "devtools::build_vignettes()"
 
 ## build project data
-data:
+projects:
+	# clean project data
+	rm -rf inst/extdata/projects/*
 	# nacional-1km
 	R --slave -e "source('inst/scripts/nacional-1km/format-nacional-1km.R')"
-
-## copy project data to production directory
-prod-data:
-	# nacional-1km
-	cd /opt/wheretowork/projects & rm -rf nacional-1km
-	cp -R inst/extdata/projects/nacional-1km /opt/wheretowork/projects
-
-projects: data prod-data
 
 ## reubild readme
 readme:
