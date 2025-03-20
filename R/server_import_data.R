@@ -192,7 +192,7 @@ import_data <- function(x, mode) {
   # find all the files ended with *-solution.tif in the project directory
   solution_files <- list.files(project_dir, pattern = "-solution.tif$", full.names = TRUE)
   # get only the file name without the path and the extension, change the "-" to " "
-  solution_names <- gsub("-", " ", tools::file_path_sans_ext(basename(solution_files)))
+  solution_names <- gsub("-solution", "", tools::file_path_sans_ext(basename(solution_files)))
   shinyWidgets::updatePickerInput(
       session = session,
       inputId = "load_solution_list",
