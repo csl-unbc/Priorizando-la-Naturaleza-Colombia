@@ -64,6 +64,10 @@ RUN cd /app && \
 # set command
 CMD ["/bin/bash"]
 
+## prepare data project
+COPY Makefile /app
+RUN cd /app && make projects
+
 # shiny image
 FROM base AS shiny
 

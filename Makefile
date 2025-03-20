@@ -20,15 +20,18 @@ man:
 vigns:
 	R --slave -e "devtools::build_vignettes()"
 
-## simulate data
+## build project data
 data:
-	R --slave -e "source('inst/scripts/colombia-1km/format-colombia-1km.R')"
+	# nacional-1km
+	R --slave -e "source('inst/scripts/nacional-1km/format-nacional-1km.R')"
 
-## copy data to production directory
+## copy project data to production directory
 prod-data:
-	# colombia-1km
-	cd /opt/wheretowork/projects & rm -rf colombia-1km
-	cp -R inst/extdata/projects/colombia-1km /opt/wheretowork/projects
+	# nacional-1km
+	cd /opt/wheretowork/projects & rm -rf nacional-1km
+	cp -R inst/extdata/projects/nacional-1km /opt/wheretowork/projects
+
+projects: data prod-data
 
 ## reubild readme
 readme:
