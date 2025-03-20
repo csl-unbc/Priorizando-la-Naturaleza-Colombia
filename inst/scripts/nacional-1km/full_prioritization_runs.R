@@ -63,9 +63,19 @@ for (i in 1:nrow(scenarios)) {
       feature_stack <- stack(feature_stack, stack(mclapply(biomas, raster, mc.cores = parallel::detectCores())))
   }
 
-  if ("Especies (8700)" %in% feature_list) {
-      species <- list.files(file.path(ORIG_DATA_DIR, "features/21_fixed"), pattern = ".tif$", full.names = TRUE)
-      feature_stack <- stack(feature_stack, stack(mclapply(species, raster, mc.cores = parallel::detectCores())))
+  # load species richness for testing
+  if (FALSE) {
+    if ("Especies (8700)" %in% feature_list) {
+        species <- list.files("layers/Especies", pattern = "^riqueza_especies_.*\\.tif$", full.names = TRUE)
+        feature_stack <- stack(feature_stack, stack(mclapply(species, raster, mc.cores = parallel::detectCores())))
+        # apply normalization
+        feature_stack <- stack(mclapply(1:nlayers(feature_stack), function(i) normalize(feature_stack[[i]]), mc.cores = parallel::detectCores()))
+    }
+  } else {
+    if ("Especies (8700)" %in% feature_list) {
+        species <- list.files(file.path(ORIG_DATA_DIR, "features/21_fixed"), pattern = ".tif$", full.names = TRUE)
+        feature_stack <- stack(feature_stack, stack(mclapply(species, raster, mc.cores = parallel::detectCores())))
+    }
   }
 
   if ("Páramo" %in% feature_list) {
