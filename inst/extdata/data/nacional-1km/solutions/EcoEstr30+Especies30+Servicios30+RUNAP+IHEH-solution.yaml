@@ -1,0 +1,499 @@
+name: Nacional - 1km
+author_name: Xavier C. Llano
+author_email: llano@unbc.ca
+mode: advanced
+themes:
+- name: Biomas
+  feature:
+  - name: Orobioma Azonal del Zonobioma Humedo Tropical
+    variable:
+      index: Orobioma Azonal del Zonobioma Humedo Tropical
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#33CC4C'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    downloadable: yes
+    goal: 0.0
+    limit_goal: 0.0
+  - name: Orobioma del Zonobioma Humedo Tropical
+    variable:
+      index: Orobioma del Zonobioma Humedo Tropical
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#33CC4C'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    downloadable: yes
+    goal: 0.0
+    limit_goal: 0.0
+  - name: Pedobioma del Zonobioma Humedo Tropical
+    variable:
+      index: Pedobioma del Zonobioma Humedo Tropical
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#33CC4C'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    downloadable: yes
+    goal: 0.0
+    limit_goal: 0.0
+  - name: Zonobioma Alternohigrico Tropical
+    variable:
+      index: Zonobioma Alternohigrico Tropical
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#33CC4C'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    downloadable: yes
+    goal: 0.0
+    limit_goal: 0.0
+  - name: Zonobioma Humedo Tropical
+    variable:
+      index: Zonobioma Humedo Tropical
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#33CC4C'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: no
+    visible: no
+    hidden: no
+    downloadable: yes
+    goal: 0.0
+    limit_goal: 0.0
+- name: Riqueza de especies
+  feature:
+  - name: Plantas (Magnoliopsida)
+    variable:
+      index: riqueza_especies_magnoliopsida
+      units: index
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCFD'
+        - '#E0ECF4'
+        - '#BFD3E6'
+        - '#9EBCDA'
+        - '#8C96C6'
+        - '#8C6BB1'
+        - '#88419D'
+        - '#810F7C'
+        - '#4D004B'
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    downloadable: yes
+    goal: 0.3
+    limit_goal: 0.0
+  - name: Peces (Actinopteri)
+    variable:
+      index: riqueza_especies_actinopteri
+      units: index
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCFD'
+        - '#E0ECF4'
+        - '#BFD3E6'
+        - '#9EBCDA'
+        - '#8C96C6'
+        - '#8C6BB1'
+        - '#88419D'
+        - '#810F7C'
+        - '#4D004B'
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    downloadable: yes
+    goal: 0.3
+    limit_goal: 0.0
+  - name: Aves
+    variable:
+      index: riqueza_especies_aves
+      units: index
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCFD'
+        - '#E0ECF4'
+        - '#BFD3E6'
+        - '#9EBCDA'
+        - '#8C96C6'
+        - '#8C6BB1'
+        - '#88419D'
+        - '#810F7C'
+        - '#4D004B'
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    downloadable: yes
+    goal: 0.3
+    limit_goal: 0.0
+  - name: Anfibios (Amphibia)
+    variable:
+      index: riqueza_especies_amphibia
+      units: index
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCFD'
+        - '#E0ECF4'
+        - '#BFD3E6'
+        - '#9EBCDA'
+        - '#8C96C6'
+        - '#8C6BB1'
+        - '#88419D'
+        - '#810F7C'
+        - '#4D004B'
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    downloadable: yes
+    goal: 0.3
+    limit_goal: 0.0
+  - name: Reptiles (Squamata)
+    variable:
+      index: riqueza_especies_squamata
+      units: index
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCFD'
+        - '#E0ECF4'
+        - '#BFD3E6'
+        - '#9EBCDA'
+        - '#8C96C6'
+        - '#8C6BB1'
+        - '#88419D'
+        - '#810F7C'
+        - '#4D004B'
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    downloadable: yes
+    goal: 0.3
+    limit_goal: 0.0
+  - name: Mamíferos (Mammalia)
+    variable:
+      index: riqueza_especies_mammalia
+      units: index
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCFD'
+        - '#E0ECF4'
+        - '#BFD3E6'
+        - '#9EBCDA'
+        - '#8C96C6'
+        - '#8C6BB1'
+        - '#88419D'
+        - '#810F7C'
+        - '#4D004B'
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    downloadable: yes
+    goal: 0.3
+    limit_goal: 0.0
+  - name: Cocodrilos y caimanes (Crocodylia)
+    variable:
+      index: riqueza_especies_crocodylia
+      units: index
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCFD'
+        - '#E0ECF4'
+        - '#BFD3E6'
+        - '#9EBCDA'
+        - '#8C96C6'
+        - '#8C6BB1'
+        - '#88419D'
+        - '#810F7C'
+        - '#4D004B'
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    downloadable: yes
+    goal: 0.3
+    limit_goal: 0.0
+- name: Páramos
+  feature:
+  - name: Páramos
+    variable:
+      index: paramos
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#aaaa00'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    downloadable: yes
+    goal: 0.3
+    limit_goal: 0.0
+- name: Manglares
+  feature:
+  - name: Manglares
+    variable:
+      index: manglares
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#6bcac4'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    downloadable: yes
+    goal: 0.3
+    limit_goal: 0.0
+- name: Humedales
+  feature:
+  - name: Humedales
+    variable:
+      index: humedales
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#00aaff'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    downloadable: yes
+    goal: 0.3
+    limit_goal: 0.0
+- name: Bosque Seco
+  feature:
+  - name: Bosque Seco
+    variable:
+      index: bosque_seco
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#ffaa00'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    downloadable: yes
+    goal: 0.3
+    limit_goal: 0.0
+- name: Carbono Orgánico Suelos
+  feature:
+  - name: Carbono Orgánico Suelos
+    variable:
+      index: carbono_organico_suelos
+      units: index
+      legend:
+        type: continuous
+        colors:
+        - '#FFFFFF'
+        - '#F0F0F0'
+        - '#D9D9D9'
+        - '#BDBDBD'
+        - '#969696'
+        - '#737373'
+        - '#525252'
+        - '#252525'
+        - '#000000'
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    downloadable: yes
+    goal: 0.3
+    limit_goal: 0.0
+- name: Biomasa aérea más subterránea
+  feature:
+  - name: Biomasa aérea más subterránea
+    variable:
+      index: biomasa_aerea_mas_subterranea
+      units: index
+      legend:
+        type: continuous
+        colors:
+        - '#F7FCFD'
+        - '#E5F5F9'
+        - '#CCECE6'
+        - '#99D8C9'
+        - '#66C2A4'
+        - '#41AE76'
+        - '#238B45'
+        - '#006D2C'
+        - '#00441B'
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    downloadable: yes
+    goal: 0.3
+    limit_goal: 0.0
+- name: Recarga de agua subterránea
+  feature:
+  - name: Recarga de agua subterránea
+    variable:
+      index: recarga_agua_subterranea
+      units: km2
+      legend:
+        type: manual
+        colors:
+        - '#00000000'
+        - '#7897b9'
+        labels:
+        - absence
+        - presence
+      provenance: national
+    status: yes
+    visible: no
+    hidden: no
+    downloadable: yes
+    goal: 0.3
+    limit_goal: 0.0
+weights:
+- name: Índice de Huella Espacial Humana
+  variable:
+    index: IHEH_2022_log
+    units: index
+    legend:
+      type: continuous
+      colors:
+      - '#FFF5F0'
+      - '#FEE0D2'
+      - '#FCBBA1'
+      - '#FC9272'
+      - '#FB6A4A'
+      - '#EF3B2C'
+      - '#CB181D'
+      - '#A50F15'
+      - '#67000D'
+    provenance: national
+  status: yes
+  visible: no
+  hidden: no
+  downloadable: yes
+  factor: -100.0
+includes:
+- name: RUNAP
+  variable:
+    index: RUNAP
+    units: ' '
+    legend:
+      type: manual
+      colors:
+      - '#00000000'
+      - '#5ea53f'
+      labels:
+      - not included
+      - ' included'
+    provenance: national
+  mandatory: no
+  status: yes
+  visible: no
+  hidden: no
+  downloadable: yes
+  overlap: .na.character
+- name: OMECs
+  variable:
+    index: OMECs
+    units: ' '
+    legend:
+      type: manual
+      colors:
+      - '#00000000'
+      - '#86af43'
+      labels:
+      - not included
+      - ' included'
+    provenance: national
+  mandatory: no
+  status: no
+  visible: no
+  hidden: no
+  downloadable: yes
+  overlap: .na.character
+excludes: []
+parameters:
+- name: Total area budget
+  status: no
+  value: 1.0
+- name: Spatial clustering
+  status: no
+  value: 1.0
+- name: Hide solution layer from map
+  status: no
+  value: 0.0
+- name: Override includes
+  status: no
+  value: 0.0
+- name: Update solution settings
+  status: yes
+  value: 0
