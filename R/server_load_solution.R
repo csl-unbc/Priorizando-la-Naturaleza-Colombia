@@ -13,14 +13,8 @@
 #' @noRd
 server_load_solution <- quote({
 
-  # enable load solution button when a solution is selected
-  shiny::observeEvent(input$load_solution_list, {
-      if (input$load_solution_list == "") {
-          disable_html_element("load_solution_button")
-      } else {
-          enable_html_element("load_solution_button")
-      }
-  })
+  # create reactive value to store new results
+  new_user_load_result <- shiny::reactiveVal()
 
   # load a solution when load_solution_button button pressed
   shiny::observeEvent(input$load_solution_button, {
@@ -258,7 +252,7 @@ server_load_solution <- quote({
 
     ## generate id and store it in app_data
     curr_id <- uuid::UUIDgenerate()
-    app_data$new_solution_id <- curr_id
+    app_data$new_load_solution_id <- curr_id
 
     ## extract values for generating result
     ### settings
@@ -299,72 +293,108 @@ server_load_solution <- quote({
     #### solution name
     curr_name <- gsub("-", " ", tools::file_path_sans_ext(basename(load_solution)))
 
-    ### main processing
-    if (curr_type) {
-      #### if budget specified, then use the min shortfall formulation
-      r <- try(
-        min_shortfall_result(
-          id = curr_id,
-          area_budget_proportion = curr_area_budget,
-          area_data = curr_area_data,
-          boundary_data = curr_boundary_data,
-          theme_data = curr_theme_data,
-          weight_data = curr_weight_data,
-          include_data = curr_include_data,
-          exclude_data = curr_exclude_data,
-          theme_settings = curr_theme_settings,
-          weight_settings = curr_weight_settings,
-          include_settings = curr_include_settings,
-          exclude_settings = curr_exclude_settings,
-          parameters = curr_parameters,
-          overlap = curr_overlap,
-          gap_1 = curr_gap_1,
-          gap_2 = curr_gap_2,
-          boundary_gap = curr_boundary_gap,
-          cache = curr_cache,
-          time_limit_1 = curr_time_limit_1,
-          time_limit_2 = curr_time_limit_2,
-          verbose = curr_verbose,
-          try_gurobi = try_gurobi,
-          load_solution = load_solution
-        ),
-        silent = TRUE
+    ## generate result using asynchronous task
+    app_data$task <- future::future(packages = "wheretowork", seed = NULL, {
+      ### main processing
+      if (curr_type) {
+        #### if budget specified, then use the min shortfall formulation
+        r <- try(
+          min_shortfall_result(
+            id = curr_id,
+            area_budget_proportion = curr_area_budget,
+            area_data = curr_area_data,
+            boundary_data = curr_boundary_data,
+            theme_data = curr_theme_data,
+            weight_data = curr_weight_data,
+            include_data = curr_include_data,
+            exclude_data = curr_exclude_data,
+            theme_settings = curr_theme_settings,
+            weight_settings = curr_weight_settings,
+            include_settings = curr_include_settings,
+            exclude_settings = curr_exclude_settings,
+            parameters = curr_parameters,
+            overlap = curr_overlap,
+            gap_1 = curr_gap_1,
+            gap_2 = curr_gap_2,
+            boundary_gap = curr_boundary_gap,
+            cache = curr_cache,
+            time_limit_1 = curr_time_limit_1,
+            time_limit_2 = curr_time_limit_2,
+            verbose = curr_verbose,
+            try_gurobi = try_gurobi,
+            load_solution = load_solution
+          ),
+          silent = TRUE
+        )
+      } else {
+        #### else, then use the min set formulation
+        r <- try(
+          min_set_result(
+            id = curr_id,
+            area_data = curr_area_data,
+            boundary_data = curr_boundary_data,
+            theme_data = curr_theme_data,
+            weight_data = curr_weight_data,
+            include_data = curr_include_data,
+            exclude_data = curr_exclude_data,
+            theme_settings = curr_theme_settings,
+            weight_settings = curr_weight_settings,
+            include_settings = curr_include_settings,
+            exclude_settings = curr_exclude_settings,
+            parameters = curr_parameters,
+            overlap = curr_overlap,
+            gap_1 = curr_gap_1,
+            gap_2 = curr_gap_2,
+            boundary_gap = curr_boundary_gap,
+            cache = curr_cache,
+            time_limit_1 = curr_time_limit_1,
+            time_limit_2 = curr_time_limit_2,
+            verbose = curr_verbose,
+            try_gurobi = try_gurobi,
+            load_solution = load_solution
+          ),
+          silent = TRUE
+        )
+      }
+      ## return result
+      r <- list(
+        id = curr_id, name = curr_name, color = curr_color,
+        result = r, cache = curr_cache
       )
-    } else {
-      #### else, then use the min set formulation
-      r <- try(
-        min_set_result(
-          id = curr_id,
-          area_data = curr_area_data,
-          boundary_data = curr_boundary_data,
-          theme_data = curr_theme_data,
-          weight_data = curr_weight_data,
-          include_data = curr_include_data,
-          exclude_data = curr_exclude_data,
-          theme_settings = curr_theme_settings,
-          weight_settings = curr_weight_settings,
-          include_settings = curr_include_settings,
-          exclude_settings = curr_exclude_settings,
-          parameters = curr_parameters,
-          overlap = curr_overlap,
-          gap_1 = curr_gap_1,
-          gap_2 = curr_gap_2,
-          boundary_gap = curr_boundary_gap,
-          cache = curr_cache,
-          time_limit_1 = curr_time_limit_1,
-          time_limit_2 = curr_time_limit_2,
-          verbose = curr_verbose,
-          try_gurobi = try_gurobi,
-          load_solution = load_solution
-        ),
-        silent = TRUE
-      )
+    })
+    ## add promises to handle result once asynchronous task finished
+      prom <-
+        (app_data$task) %...>%
+        (function(result) {
+          new_user_load_result(result)
+          app_data$cache <- result$cache
+        }) %...!%
+        (function(error) {
+          new_user_load_result(NULL)
+          if (!is.null(app_data$new_load_solution_id)) {
+            warning(error)
+          }
+          NULL
+        })
+
+      ## this needed to implement asynchronous processing,
+      ## see https://github.com/rstudio/promises/issues/23
+      NULL
     }
-    ## return result
-    r <- list(
-      id = curr_id, name = curr_name, color = curr_color,
-      result = r, cache = curr_cache
-    )
+  )
+
+  # add solution to map when generating new solution
+  shiny::observeEvent(new_user_load_result(), {
+    ## specify dependencies
+    if (is.null(new_user_load_result()) || is.null(app_data$new_load_solution_id)) {
+      return()
+    }
+    if (!identical(new_user_load_result()$id, app_data$new_load_solution_id)) {
+      return()
+    }
+
+    ## extract result
+    r <- new_user_load_result()
 
     ## generate solution from result
     s <- new_solution_from_result(
@@ -445,13 +475,6 @@ server_load_solution <- quote({
     leaflet.extras2::openSidebar(
       map,
       id = "solutionResultsPane", sidebar_id = "analysisSidebar"
-    )
-
-    ## reset solution name
-    shiny::updateTextInput(
-      session = session,
-      inputId = "newSolutionPane_settings_name",
-      value = ""
     )
 
     ## enable solution results modal button after generating first solution

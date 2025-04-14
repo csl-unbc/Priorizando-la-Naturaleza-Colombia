@@ -52,6 +52,7 @@ server_initialize_app <- quote({
       ss = NULL,
       ## state variables
       new_solution_id = NULL,
+      new_load_solution_id = NULL,
       task = NULL
     )
   )
@@ -122,6 +123,15 @@ server_initialize_app <- quote({
     shinyBS::toggleModal(
       session = session, modalId = "helpModal", toggle = "open"
     )
+  })
+
+  # enable load solution button when a solution is selected
+  shiny::observeEvent(input$load_solution_list, {
+      if (input$load_solution_list == "") {
+          disable_html_element("load_solution_button")
+      } else {
+          enable_html_element("load_solution_button")
+      }
   })
 
 })
