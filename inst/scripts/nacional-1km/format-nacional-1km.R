@@ -291,7 +291,8 @@ write_project(
   boundary_path = "inst/extdata/projects/nacional-1km/nacional_boundary.csv.gz",
   mode = "advanced",
   author_name = "Xavier C. Llano",
-  author_email = "llano@unbc.ca"
+  author_email = "llano@unbc.ca",
+  user_groups = "public"
 )
 
 # copy the solutions to the project folder
