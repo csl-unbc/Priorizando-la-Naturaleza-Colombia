@@ -55,8 +55,14 @@
   margin-top: -35px;
 }
 
+.partners-logo {
+  margin-top: 22px;
+  margin-bottom: 10px;
+  width: 72%;
+}
+
 .wtw-logo {
-  margin-top: 35px;
+  margin-top: 30px;
   width: 100%;
 }
 

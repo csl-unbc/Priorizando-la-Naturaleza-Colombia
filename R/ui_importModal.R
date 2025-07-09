@@ -65,9 +65,19 @@ importModal <- function(id) {
             loadingLabel = "Loading..."
           )
         ),
-        
-       # logos
+
+       # logos partners
        shiny::hr(),
+       htmltools::tags$p(class = "dev-title", "Proyecto llevado a cabo por:"),
+       htmltools::tags$div(class = "sponser-logos",
+       htmltools::tags$div(class = "sponser-logo-row",
+         htmltools::tags$img(
+           class = "partners-logo",
+           src ="www/partner_logos.webp"
+         ),
+       ),
+       ),
+       # logos wheretowork
        htmltools::tags$p(class = "dev-title", "Herramienta basada en WhereToWork, desarrollada por:"),
        htmltools::tags$div(class = "sponser-logos",
        htmltools::tags$div(class = "sponser-logo-row",
